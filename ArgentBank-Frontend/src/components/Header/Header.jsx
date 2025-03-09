@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '../Logo/Logo'
+import Nav from '../Nav/Nav'
 import '../../styles/main.css'
 
 /**
@@ -13,12 +14,7 @@ function Header() {
   return (
     <nav className="main-nav">
       <Logo />
-      <div>
-        <Link className="main-nav-item" to="/login">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </Link>
-      </div>
+      <Nav/>
     </nav>
   )
 }
