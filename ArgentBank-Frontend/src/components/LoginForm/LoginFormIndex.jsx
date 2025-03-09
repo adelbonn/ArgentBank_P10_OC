@@ -1,7 +1,8 @@
 import '../../styles/main.css'
 import CheckBoxField from '../CheckBoxField/CheckBoxFieldIndex'
 import InputField from '../InputField/InputFieldIndex'
-
+import SignInButton from '../SigInButton/SignInButtonIndex'
+import UserIcon from '../UserIcon/UserIconIndex'
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion
@@ -12,25 +13,34 @@ import InputField from '../InputField/InputFieldIndex'
 function LoginForm() {
     return (
         <section className="sign-in-content">
-            <i className="fa fa-user-circle sign-in-icon"></i>
-      <h1>Sign In</h1>
-      <form>
-        <div className="input-wrapper">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
-        </div>
-        <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
-        <button className="sign-in-button" type="submit">
-          Sign In
-        </button>
-      </form>
+            {/* <i className="fa fa-user-circle sign-in-icon"></i> */}
+            <UserIcon size="large" />
+            <h1>Sign In</h1>
+            <form>
+                <InputField
+                    id="username"
+                    label="Username"
+                    type="text"
+                    autoComplete="username"
+        //   value=""
+        //   onChange={() => {}}
+                />
+                <InputField
+                    id="password"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+        //   value=""
+        //   onChange={() => {}}
+                />
+                <CheckBoxField
+                    id="remember-me"
+                    label="Remember me"
+          defaultChecked={false} // utiliser defaultCheck a la place de check acr creer un erreur en console revoir pourquoi
+        //   onChange={() => {}}
+                />
+                <SignInButton />
+            </form>
         </section>
     )
 }

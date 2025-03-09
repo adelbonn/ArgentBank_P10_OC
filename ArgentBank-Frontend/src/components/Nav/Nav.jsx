@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../../styles/main.css'
-import Logo from '../Logo/Logo'
+// import Logo from '../Logo/Logo'
+import UserIcon from '../UserIcon/UserIconIndex'
 /**
  * Nav component - Navigation principale
  * Version de base sans logique d'authentification
@@ -14,7 +15,8 @@ function Nav () {
             
             <div>
                 <Link className="main-nav-item" to="/login">
-                    <i className="fa fa-user-circle"></i>
+                    {/* <i className="fa fa-user-circle"></i> */}
+                    <UserIcon size="default" />
                     Sign In
                 </Link>
             </div>
