@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from '../src/components/Layout/Layout'
 import Home from './pages/Home/HomeIndex'
 import NotFound from './pages/NotFound/NotFoundIndex'
+import Login from './pages/Login/LoginIndex'
+
 import './styles/main.css' // import du style du projet
 
 /***
@@ -13,9 +15,15 @@ function App() {
   return (
     <Router>
      <Routes>
+
       <Route path="/" element={
         <Layout>
           <Home />
+        </Layout>
+      } />
+      <Route path="/login" element={
+        <Layout>
+          <Login />
         </Layout>
       } />
       <Route path="*" element={
