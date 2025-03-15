@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
  * Page 404 - Not Found
  * Affichée quand une route n'existe pas
  */
+
 function NotFound() {
   return (
     <main className="main bg-dark">

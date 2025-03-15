@@ -1,6 +1,6 @@
 export const heroData = {
     subtitles: [
-        "no fess.",
+        "No fees.",
         "No minimum deposit.",
         "High interest rates."
     ],

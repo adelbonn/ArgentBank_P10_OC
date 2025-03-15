@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom'
 import '../../styles/main.css'
 // import Logo from '../Logo/Logo'
 import UserIcon from '../UserIcon/UserIconIndex'
+
 /**
  * Nav component - Navigation principale
- * Version de base sans logique d'authentification
+ * 
  * utilise les styles du template main.css
- * Modifier la partie Link crée le composant avec SingIn et le composant avec l icon puis les ajouter ici en tant que composant
+ * Modifier la partie Link crée le composant avec SingIn
  */
 
 function Nav () {

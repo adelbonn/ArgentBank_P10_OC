@@ -11,8 +11,7 @@ import '../../styles/main.css'
  * @param {string} props.description - Description de la fonctionnalité
  */
 
-
-function FeatureItem({ imgSrc, imgAlt, title, description }) {
+const FeatureItem = ({ imgSrc, imgAlt, title, description }) => {
   return (
     <div className="feature-item">
       <img src={imgSrc} alt={imgAlt} className="feature-icon" />

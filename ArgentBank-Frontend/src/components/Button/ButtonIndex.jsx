@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
  * @param {function} props.onClick - Fonction de clic (optionnelle)
  * @returns {JSX.Element} Bouton personnalisable
  */
-function Button({ text, className, type, onClick }) {
+const Button = ({ text, className, type, onClick }) => {
   return (
     <button
       className={`button ${className}`}

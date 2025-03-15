@@ -36,7 +36,7 @@ function LoginForm() {
                 <CheckBoxField
                     id="remember-me"
                     label="Remember me"
-          defaultChecked={false} // utiliser defaultCheck a la place de check acr creer un erreur en console revoir pourquoi
+          defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
         //   onChange={() => {}}
                 />
                 <SignInButton />

@@ -1,7 +1,7 @@
 
-import Button from '../Button/Button'
+import Button from '../Button/ButtonIndex'
 
-function SignInButton() {
+const SignInButton = () => {
   return (
     <Button
       text="Sign In"

@@ -9,7 +9,7 @@ import { heroData, featuresData } from '../../assets/Data/homeData'
  * Page d'accueil
  * Affiche le hero banner et les features
  */
-function Home() {
+const Home = () => {
 //   const { subtitles, text } = heroData
 //   const { features } = featuresData
 

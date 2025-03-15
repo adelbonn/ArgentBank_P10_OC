@@ -3,6 +3,7 @@ import Layout from '../src/components/Layout/Layout'
 import Home from './pages/Home/HomeIndex'
 import NotFound from './pages/NotFound/NotFoundIndex'
 import Login from './pages/Login/LoginIndex'
+import User from './pages/User/UserIndex'
 
 import './styles/main.css' // import du style du projet
 
@@ -29,6 +30,12 @@ function App() {
       <Route path="*" element={
         <Layout>
           <NotFound />
+        </Layout>
+      } />
+
+      <Route path="/user" element={
+        <Layout>
+          <User />
         </Layout>
       } />
      </Routes>

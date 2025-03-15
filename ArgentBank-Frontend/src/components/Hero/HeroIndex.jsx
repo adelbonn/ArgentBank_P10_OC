@@ -15,7 +15,7 @@ function Hero ({subtitles, text}) {
         <div className='hero'>
             <section className='hero-content'>
                 <h2 className='sr-only'>Promoted Content</h2>
-  {/*Je map sur le tableau de sous-titres pour créer plusieurs Subtitle */}
+  {/* map sur le tableau de sous-titres pour créer plusieurs Subtitle */}
   {subtitles.map((subtitle, index) => (
           <Subtitle key={`subtitle-${index}`} text={subtitle} />
         ))}
