@@ -1,4 +1,5 @@
 import "../../styles/main.css";
+
 import CheckBoxField from "../CheckBoxField/CheckBoxFieldIndex";
 import InputField from "../InputField/InputFieldIndex";
 import SignInButton from "../SigInButton/SignInButtonIndex";
@@ -7,6 +8,9 @@ import UserIcon from "../UserIcon/UserIconIndex";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../utils/auth";
+import { useDispatch } from "react-redux";
+import { loginStart, loginSuccess, loginFailed, logout } from "../../store/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login
@@ -16,16 +20,16 @@ import { setAuthToken } from "../../utils/auth";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("🚀 Tentative de connexion...");
+    // Dispatch l' action de début de connexion
+    dispatch(loginStart());
 
     try {
       console.log("📡 Envoi requête API...");
-
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
@@ -46,9 +50,10 @@ const LoginForm = () => {
 
       if (response.ok) {
         console.log("✅ Authentification réussie");
-        setAuthToken(data.body.token); // Stocke le token dans le local storage
-        navigate("/user"); // redirige vers la page utilisateur
-      } else {
+        setAuthToken(data.body.token); // Stocke le token 
+        dispatch(loginSuccess(data.body.token)); //dispatch de l action redux, mise a jour de redux
+        navigate("/user");  // reidrection vers la page utilisateur
+      } else { 
         console.warn("❌ Erreur connexion:", data.message);
         setError(data.message || "Error during loggin");
       }
@@ -76,20 +81,26 @@ const LoginForm = () => {
     }));
   };
 
+// Récupération de l'état d'erreur depuis redux
+const error = useSelector(state => state.auth.error);
+const status = useSelector(state => state.auth.status);
+
+
   return (
     <section className="sign-in-content">
       <UserIcon size="large" />
-      {/*ajuster le style, manque un espace entre l icon et le texte*/}
+      {/*A ajuster le style, manque un espace entre l icon et le texte*/}
       <h1>Sign In</h1>
       {error && <div className="error-text">{error}</div>} 
       <form onSubmit={handleSubmit}>
         <InputField
           id="username"
           label="Username"
-          type="text"
+          type="text" 
           autoComplete="username"
           value={formData.username}
           onChange={handleChange}
+          disabled={status === "loading"} // empêche la soumission du formulaire si le statut est "loading"
         />
         <InputField
           id="password"
@@ -98,14 +109,17 @@ const LoginForm = () => {
           autoComplete="current-password"
           value={formData.password}
           onChange={handleChange}
+          disabled={status === "loading"} 
         />
         <CheckBoxField
           id="remember-me"
           label="Remember me"
           defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
           onChange={handleChange}
+          disabled={status === "loading"} // empêche la soumission du formulaire si le statut est "loading"
         />
-        <SignInButton type="submit" />
+        <SignInButton type="submit"
+         disabled={status === "loading"} />
       </form>
     </section>
   );

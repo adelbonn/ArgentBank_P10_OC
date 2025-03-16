@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 /**
  * Page 404 - Not Found
  * Affichée quand une route n'existe pas
+ * Finir le style
  */
 
 function NotFound() {

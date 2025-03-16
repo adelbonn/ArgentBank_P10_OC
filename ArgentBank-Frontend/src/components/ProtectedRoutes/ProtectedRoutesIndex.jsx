@@ -13,7 +13,7 @@ if (!isAuthenticated()) {
 }
 
 // si authentifié rendre les routes enfants
-return children;
+return children;  // a améliorer avec children || <outle/>, cf documentation react-router-dom
 }
 
 
