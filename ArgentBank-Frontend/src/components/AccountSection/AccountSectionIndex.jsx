@@ -3,13 +3,13 @@ import Account from '../Account/AccountIndex'
 import '../../styles/main.css'
 
 /**
- * Composant AccountSection - Contient la liste des comptes utilisateur
+ * Composant AccountSection - Container liste de comptes
  */
 
 
 const AccountSection = () => {
 
-  // Ces données viendront de Redux plus tard
+  // Données à remplacer par redux ensuite
   const accounts = [
     {
       title: "Argent Bank Checking",
@@ -37,10 +37,6 @@ const AccountSection = () => {
       {accounts.map((account, index) => (
         <Account
           key={`account-${index}`}
-        //   title={account.title}
-        //   accountNumber={account.accountNumber}
-        //   amount={account.amount}
-        //   description={account.description}
         {...account}
         />
       ))}

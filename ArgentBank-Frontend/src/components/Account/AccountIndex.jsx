@@ -23,7 +23,7 @@ const Account = ({ title, accountNumber, amount, description }) => {
       </div>
       <div className="account-content-wrapper cta">
         {/**Ajouter une logique pour la position de la flèche */}
-        <button className="transaction-button"> <i className="fa fa-chevron-down" /></button>
+        <button className="transaction-button"> <i className="fa fa-chevron-down" aria-hidden="true"/></button>
       </div>
     </section>
   )

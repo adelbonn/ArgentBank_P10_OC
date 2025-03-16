@@ -4,7 +4,7 @@ import Home from './pages/Home/HomeIndex'
 import NotFound from './pages/NotFound/NotFoundIndex'
 import Login from './pages/Login/LoginIndex'
 import User from './pages/User/UserIndex'
-
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutesIndex'
 import './styles/main.css' // import du style du projet
 
 /***
@@ -12,7 +12,7 @@ import './styles/main.css' // import du style du projet
  * Gère le routage et le Layout
  */
 
-function App() {
+const App = () => {
   return (
     <Router>
      <Routes>
@@ -35,7 +35,9 @@ function App() {
 
       <Route path="/user" element={
         <Layout>
-          <User />
+          <ProtectedRoutes>
+            <User />
+          </ProtectedRoutes>
         </Layout>
       } />
      </Routes>

@@ -13,7 +13,7 @@ import AccountSection from '../../components/AccountSection/AccountSectionIndex'
 const User = () => {
   const [isEditing, setIsEditing] = useState(false)
   // Ces données viendront de Redux plus tard
-  const userName = "Tony Jarvis"
+  const userName = "Tony Stark"
   
   return (
     <>
@@ -23,6 +23,7 @@ const User = () => {
           Edit Name
         </button>
       </div>
+      <h2 className="sr-only">Account</h2>
      <AccountSection />
     </>
   )
