@@ -7,10 +7,9 @@ import UserIcon from "../UserIcon/UserIconIndex";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setAuthToken } from "../../utils/auth";
-import { useDispatch } from "react-redux";
-import { loginStart, loginSuccess, loginFailed, logout } from "../../store/features/auth/authSlice";
-import { useSelector } from "react-redux";
+// import { setAuthToken } from "../../utils/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, selectAuthStatus, selectAuthError } from "../../store/features/auth/authSlice";
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login
@@ -20,59 +19,21 @@ import { useSelector } from "react-redux";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  // const [error, setError] = useState("");
+
   const dispatch = useDispatch()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Dispatch l' action de début de connexion
-    dispatch(loginStart());
+ // on utilise les selecteurs pour accéder a l'état de l'authentification
+  const status = useSelector(selectAuthStatus);
+  const error = useSelector(selectAuthError);
 
-    try {
-      console.log("📡 Envoi requête API...");
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.username,
-          password: formData.password,
-        }),
-      });
-
-      const data = await response.json();
-      console.log("📥 Réponse API:", {
-        status: response.status,
-        ok: response.ok,
-        hasToken: !!data.body?.token,
-      });
-
-      if (response.ok) {
-        console.log("✅ Authentification réussie");
-        setAuthToken(data.body.token); // Stocke le token 
-        dispatch(loginSuccess(data.body.token)); //dispatch de l action redux, mise a jour de redux
-        navigate("/user");  // reidrection vers la page utilisateur
-      } else { 
-        console.warn("❌ Erreur connexion:", data.message);
-        setError(data.message || "Error during loggin");
-      }
-    } catch (err) {
-      console.error("🔥 Erreur:", {
-        name: err.name,
-        message: err.message,
-        stack: err.stack,
-      });
-      setError("Connection error, please try again");
-    }
-  };
-
+  // état local du formaulaire 
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     rememberMe: false,
   });
 
+// Gestion des changements dans le formulaire
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -81,22 +42,45 @@ const LoginForm = () => {
     }));
   };
 
-// Récupération de l'état d'erreur depuis redux
-const error = useSelector(state => state.auth.error);
-const status = useSelector(state => state.auth.status);
+  // Soumission du formulaire
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+console.log("Tentative de connexion...")
+
+try {
+  // Dispatch de l'action loginUSer avec les credentials (ensuite loginUser dans authSlice fait la requête API, pdt ce tps status devient loading, si succès ...)
+  const result = await dispatch(loginUser({
+    email: formData.username,
+    password: formData.password,
+    rememberMe: formData.rememberMe
+  })).unwrap() // unwrap pour gérer les erreurs c
+
+  console.log("✅ Connexion réussie !");
+  navigate("/user"); //Si ok,  redirection vers le dashboard du user
+
+} catch (error) {
+  //Sinon,  les erreurs sont déjà gérée dans le thunk
+  console.error("❌ Erreur de connexion:", error);
+}
+
+ };
+
 
 
   return (
+
+
     <section className="sign-in-content">
       <UserIcon size="large" />
       {/*A ajuster le style, manque un espace entre l icon et le texte*/}
       <h1>Sign In</h1>
-      {error && <div className="error-text">{error}</div>} 
+      {/* {error && <div className="error-text">{error}</div>}  */}
       <form onSubmit={handleSubmit}>
         <InputField
           id="username"
-          label="Username"
-          type="text" 
+          name="username"
+          label="Email"
+          type="email" 
           autoComplete="username"
           value={formData.username}
           onChange={handleChange}
@@ -104,6 +88,7 @@ const status = useSelector(state => state.auth.status);
         />
         <InputField
           id="password"
+          name="password"
           label="Password"
           type="password"
           autoComplete="current-password"
@@ -113,13 +98,15 @@ const status = useSelector(state => state.auth.status);
         />
         <CheckBoxField
           id="remember-me"
+          name="rememberMe" 
           label="Remember me"
           defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
           onChange={handleChange}
           disabled={status === "loading"} // empêche la soumission du formulaire si le statut est "loading"
         />
         <SignInButton type="submit"
-         disabled={status === "loading"} />
+         disabled={status === "loading"}
+         text={status === "loading" ? "Loading..." : "Sign In"} />
       </form>
     </section>
   );
