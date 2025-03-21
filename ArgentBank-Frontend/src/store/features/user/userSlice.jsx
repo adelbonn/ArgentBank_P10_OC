@@ -22,30 +22,21 @@ export const fetchUserProfile = createAsyncThunk (
             if (!token) {
                 return rejectWithValue('No token available');
             }
-
             console.log('Token utilisé: ', token);
-            console.log('📡 Envoi requête profil...');
 
             const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
-                    // 'Accept': 'application/json'
+                    
                 }, 
-                body: JSON.stringify({}) // Ajout d'un body vide car l'API attend un POST, et json.stringify transforme l'objet en string, donc ici on envoie un objet vide pour respecter l'API
-            })
 
-console.log('Response profil :', {
-    status: response.status,
-    ok: response.ok,
-    headers: [...response.headers.entries()]
-})
+            })
 // Si la reponse n'est pas ok on tente d abord de lire le corps de la reponse
             if (!response.ok) {
                 try {
                     const errorData = await response.json();
-                    console.log('Erreur API :', errorData)
                     return rejectWithValue(errorData.message || `Erreur ${response.status} : ${response.statusText}`);
                 } catch (error) {
                     // Si on ne peux pas lire le JSON, on renvoie le statut HTTP
