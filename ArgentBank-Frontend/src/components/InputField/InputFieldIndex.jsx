@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
  * @param {string} props.autoComplete - Valeur de l'attribut autoComplete
  * @returns {JSX.Element} Champ de saisie avec label
  */
+
 function InputField({ label, type, id, value,name, onChange, autoComplete }) {
   return (
     <div className="input-wrapper">

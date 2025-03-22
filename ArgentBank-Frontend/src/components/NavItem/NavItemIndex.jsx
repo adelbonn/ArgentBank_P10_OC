@@ -17,7 +17,7 @@ function NavItem({ to, icon, text }) {
     {icon && <i className={`fa ${icon}`}></i>}
     {text}
   </Link>
-    // si je veux utiliser ceci pour pouvoir chenger l'icône modifier la prop icon par shoOcon et modifier les proptypes, et la doc jsx, showIcon etant un booleen
+    // si je veux utiliser ceci pour pouvoir chenger l'icône modifier la prop icon par showIcon et modifier les proptypes, et la doc jsx, showIcon etant un booleen
     // <Link to={to} className="main-nav-item">
     //   {showIcon && <UserIcon size="default" />}
     //   {text}

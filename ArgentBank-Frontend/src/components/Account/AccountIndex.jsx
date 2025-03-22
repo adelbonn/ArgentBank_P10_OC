@@ -22,8 +22,8 @@ const Account = ({ title, accountNumber, amount, description }) => {
         <p className="account-amount-description">{description}</p>
       </div>
       <div className="account-content-wrapper cta">
-        {/**Ajouter une logique pour la position de la flèche */}
-        <button className="transaction-button"> <i className="fa fa-chevron-down" aria-hidden="true"/></button>
+        {/**Ajouter une logique pour la position de la flèche et ne pas la mettre en button qui a la className transaction-button (c'est le button générique) et mettre la bonne icon  */}
+        <button className="transaction-button"> <i className="fa fa-chevron-right" aria-hidden="true"/></button>
       </div>
     </section>
   )

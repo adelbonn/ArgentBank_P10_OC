@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 /**
  * Utilitaires pour la gestion de l'authentification
- * Version simple avant l'implémentation de Redux
+ * 
  */
 
 export const setAuthToken = (token) => {
