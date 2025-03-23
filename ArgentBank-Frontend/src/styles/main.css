@@ -213,6 +213,7 @@ body {
 
 .input-wrapper label {
   font-weight: bold;
+  color: white; /* vérifier et mettre le bon style*/
 }
 
 .input-wrapper input {

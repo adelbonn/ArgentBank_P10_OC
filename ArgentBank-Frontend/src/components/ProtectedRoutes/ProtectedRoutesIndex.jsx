@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom' // ajouter outlet a la place de children
 import PropTypes from 'prop-types'
 import { isAuthenticated } from '../../utils/auth'
 
@@ -13,7 +13,7 @@ if (!isAuthenticated()) {
 }
 
 // si authentifié rendre les routes enfants
-return children;  // a améliorer avec children || <outle/>, cf documentation react-router-dom
+return children;  // a améliorer avec children || <outlet/>, cf documentation react-router-dom
 }
 
 

@@ -32,7 +32,7 @@ const LoginForm = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  // Récupération des identifiants sauvegardés
+  // Récupération des identifiants sauvegardés (vérifié si bien chargé dans le localStorage)
   useEffect(() => {
     const savedCredentials = localStorage.getItem("rememberCredentials");
     if (savedCredentials) {

@@ -1,0 +1,23 @@
+.edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin: auto;
+  width: 80%;
+  max-width: 400px;
+}
+.edit-profile h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
