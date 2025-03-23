@@ -9,7 +9,7 @@ import '../../styles/main.css'
 
 const AccountSection = () => {
 
-  // Données à remplacer par redux ensuite
+  // Données à remplacer par redux ensuite (vérifier si il y a ses données dans l'api avec l'endpoint /api/v1/accounts ou /api/v1/transactions ou les créer avec l'endpoint /api/v1/accounts)
   const accounts = [
     {
       title: "Argent Bank Checking",
@@ -30,7 +30,7 @@ const AccountSection = () => {
       description: "Current Balance"
     }
   ]
-// Faire un map sur les données recpérées avec  redux depuis l'api 
+// Faire un map sur les données récupérées avec  redux depuis l'api (elles ne sont pas dans l'API je dois créer les routes .. en deuxième partie du projet)
   return (
     <div>
       <h2 className="sr-only">Accounts</h2>

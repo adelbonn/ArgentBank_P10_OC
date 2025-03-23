@@ -10,8 +10,6 @@ import { heroData, featuresData } from '../../assets/Data/homeData'
  * Affiche le hero banner et les features
  */
 const Home = () => {
-//   const { subtitles, text } = heroData
-//   const { features } = featuresData
 
   return (
     <>

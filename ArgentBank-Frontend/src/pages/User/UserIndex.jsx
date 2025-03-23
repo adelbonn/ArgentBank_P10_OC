@@ -7,6 +7,7 @@ import { selectIsAuthenticated } from '../../store/features/auth/authSlice';
 import WelcomeSection from '../../components/WelcomeSEction/WelcomeSectionIdex';
 import AccountSection from '../../components/AccountSection/AccountSectionIndex';
 import '../../styles/main.css'
+
 // import EditProfile from '../EditProfile/EditProfileIndex'
 
 /**
@@ -27,16 +28,12 @@ const User = () => {
   const error = useSelector(selectUserError);
   const [isEditing, setIsEditing] = useState(false)
   
-
- 
- 
-  
   // gestion du profil au montage du composant 
   useEffect(() => {
 
     // redirection si non authentifier
     if (!isAuthenticated) {
-      navigate('/login')
+      navigate('/')
       return
     }
 

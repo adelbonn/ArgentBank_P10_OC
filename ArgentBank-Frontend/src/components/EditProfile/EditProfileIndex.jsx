@@ -12,6 +12,7 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
       <form className="edit-profile-form">
         <div className="input-wrapper">
           <label htmlFor="username">User name</label>
+          {/* utiliser les inputFields pour les champs de saisie */}
           <input
             type="text"
             id="username"

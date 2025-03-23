@@ -9,7 +9,6 @@ const store = configureStore({
     reducer: {
         auth: authReducer,
         user: userReducer,
-        
         // Ajout de l'API slice
         [argentBankApi.reducerPath]: argentBankApi.reducer,
 

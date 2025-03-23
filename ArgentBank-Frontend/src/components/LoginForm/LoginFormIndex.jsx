@@ -4,16 +4,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated } from "../../store/features/auth/authSlice";
-import { setAuthToken } from "../../utils/auth";
+// import { setAuthToken } from "../../utils/auth";
 import { useLoginMutation } from "../../store/api/argentBankApi";
-
 
 import CheckBoxField from "../CheckBoxField/CheckBoxFieldIndex";
 import InputField from "../InputField/InputFieldIndex";
 import SignInButton from "../SigInButton/SignInButtonIndex";
 import UserIcon from "../UserIcon/UserIconIndex";
-
-
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login
@@ -28,13 +25,26 @@ const LoginForm = () => {
   // Utilisation du hook généré par RTK Query
   const [login, { isLoading, error }] = useLoginMutation();
 
-// Redirection si dejà authentifié
-useEffect(() => {
-  if (isAuthenticated) {
-    navigate("/user");
-  }
-}, [isAuthenticated, navigate]);
+  // Redirection si dejà authentifié
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/user");
+    }
+  }, [isAuthenticated, navigate]);
 
+  // Récupération des identifiants sauvegardés
+  useEffect(() => {
+    const savedCredentials = localStorage.getItem("rememberCredentials");
+    if (savedCredentials) {
+      const { email, password } = JSON.parse(savedCredentials);
+      setFormData((prev) => ({
+        ...prev,
+        username: email,
+        password,
+        remeberMe: true,
+      }));
+    }
+  }, []);
 
   // état local du formulaire
   const [formData, setFormData] = useState({
@@ -57,29 +67,26 @@ useEffect(() => {
     e.preventDefault();
 
     try {
-      console.log("Tentative de connexion...");
-      // Dispatch de l'action loginUSer avec les credentials (ensuite loginUser dans authSlice fait la requête API, pdt ce tps status devient loading, si succès ...)
-      // const result = await dispatch(loginUser({
-      //   email: formData.username,
-      //   password: formData.password,
-      //   rememberMe: formData.rememberMe
-      // })).unwrap() // unwrap pour gérer les erreurs et retourner la réponse en cas de succès
-
+      // Gestion du rememberMe
+      if (formData.rememberMe) {
+        localStorage.setItem(
+          "rememberCredentials",
+          JSON.stringify({
+            email: formData.username,
+            password: formData.password,
+          })
+        );
+      } else {
+        localStorage.removeItem("rememberCredentials");
+      }
       // Appel de l'API avec RTK query
-      // result contiendra la réponse de l'API (token, user, etc.)
-      const result = await login({
+      await login({
         email: formData.username,
         password: formData.password,
-        // rememberMe: formData.rememberMe
-      }).unwrap();
+      }).unwrap(); // extrait les données en cas de succès, lance une erreur en cas déchec(catpturée dans catch)
 
-      // // stockage du token avec js-cookie
-      // setAuthToken(result.token);
       // le token sera géré par le authSlice via les matchers
       console.log("✅ Connexion réussie !");
-
-      // // redirige vers le dashboard du user
-      // navigate("/user"); // maintanat gerer dans le useEffect
     } catch (error) {
       console.error("❌ Erreur de connexion:", error);
     }
@@ -118,7 +125,7 @@ useEffect(() => {
           label="Remember me"
           defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
           onChange={handleChange}
-          disabled={isLoading} 
+          disabled={isLoading}
         />
         <SignInButton
           type="submit"
