@@ -1,6 +1,6 @@
 // import des fonctions nécessaires de RTK query
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getAuthToken } from "../../utils/auth";
+
 
 // Creation de l'API slice
 export const argentBankApi = createApi({
@@ -13,10 +13,10 @@ export const argentBankApi = createApi({
     baseUrl: "http://localhost:3001/api/v1",
 
     // préparation des headers pour chaque requêtes (s'execute avt chaque requêtes pour préparer les headers)
-    prepareHeaders: (headers) => {
+    prepareHeaders: (headers, { getState }) => {
       // Récupération du token du state redux
-      const token = getAuthToken();
-
+     
+const token = getState().auth.token;
       // Si le token est disponible, on l'ajoute dans l'entête
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
@@ -50,7 +50,7 @@ export const argentBankApi = createApi({
       transformResponse: (response) => response.body,
 
       // ce endpoint fourni les données du tag 'Profile' (tag pour le cache)
-      providesTags: ["Profile"], // indique que cette query fournit les données pour le tag 'profile'
+      providesTags: ["Profile"], 
     }),
     // Endpoint pour mettre à jour le profil
     updateProfile: builder.mutation({

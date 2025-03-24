@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setAuthToken, removeAuthToken } from "../../../utils/auth";
+//import { setAuthToken, removeAuthToken } from "../../../utils/auth";
 import { argentBankApi } from "../../api/argentBankApi";
 
 /*
@@ -60,7 +60,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      removeAuthToken();
+   //   removeAuthToken();
       // return initialState;
       state.isAuthenticated = false;
       state.status = "idle";
@@ -81,7 +81,7 @@ const authSlice = createSlice({
         argentBankApi.endpoints.login.matchFulfilled,
         (state, action) => {
           state.token = action.payload.token;
-          setAuthToken(action.payload.token);
+      //    setAuthToken(action.payload.token);
           state.isAuthenticated = true;
           state.status = "succeeded";
           state.error = null;

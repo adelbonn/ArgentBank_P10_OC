@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import {
   fetchUserProfile,
   selectUserProfile,
@@ -8,7 +8,7 @@ import {
   selectUserError,
  
 } from "../../store/features/user/userSlice";
-import { selectIsAuthenticated } from "../../store/features/auth/authSlice";
+
 import { useUpdateProfileMutation } from "../../store/api/argentBankApi";
 
 import WelcomeSection from "../../components/WelcomeSEction/WelcomeSectionIdex";
@@ -26,26 +26,18 @@ import "../../styles/main.css";
 
 const User = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+ 
 const [updateProfile] = useUpdateProfileMutation();
 
   //utilisation des selectors mémorisés
-  const isAuthenticated = useSelector(selectIsAuthenticated);
+  //const isAuthenticated = useSelector(selectIsAuthenticated);
   const userProfile = useSelector(selectUserProfile);
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
   // etat local qui controle l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
   const [isEditing, setIsEditing] = useState(false);
 
-  // gestion du profil au montage du composant
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-      return;
-    }
-    // Chargement du profil si authentifié
-    dispatch(fetchUserProfile());
-  }, [dispatch, navigate, isAuthenticated]);
+
 
   // Gestionnaire pour sauvegarder les modifications
   const handleSave = async (newUserName) => {

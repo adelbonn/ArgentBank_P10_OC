@@ -3,7 +3,8 @@ import {
   createAsyncThunk,
   createSelector,
 } from "@reduxjs/toolkit";
-import { getAuthToken } from "../../../utils/auth";
+
+// import { getAuthToken } from "../../../utils/auth";
 
 /**
  *
@@ -16,9 +17,10 @@ import { getAuthToken } from "../../../utils/auth";
 // Récupération du profil utilisateur
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const token = getAuthToken();
+      const token = getState.auth.token();
+      console.log('getState().auth', token);
       // verification du token
       if (!token) {
         return rejectWithValue("No token available");
