@@ -4,7 +4,6 @@ export const argentBankApi = createApi({
   reducerPath: "argentBankApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3001/api/v1",
-/*************  ✨ Codeium Command 🌟  *************/
     prepareHeaders: (headers, { getState }) => {
       // Récupération du token du state redux
       const token = getState().auth.token;
@@ -14,7 +13,6 @@ export const argentBankApi = createApi({
       headers.set("Content-Type", "application/json");
       return headers;
     },
-/******  29490ca7-5108-40b9-a0ce-eee28b80991a  *******/
   }),
   tagTypes: ["Profile"],
 
