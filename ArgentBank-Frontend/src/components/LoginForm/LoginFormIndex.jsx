@@ -10,7 +10,7 @@ import { useLoginMutation } from "../../store/api/argentBankApi";
 import CheckBoxField from "../CheckBoxField/CheckBoxFieldIndex";
 import InputField from "../InputField/InputFieldIndex";
 import SignInButton from "../SigInButton/SignInButtonIndex";
-import UserIcon from "../UserIcon/UserIconIndex";
+import Icon from "../Icons/IconIndex";
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login
@@ -41,7 +41,7 @@ const LoginForm = () => {
         ...prev,
         username: email,
         password,
-        remeberMe: true,
+        rememberMe: true,
       }));
     }
   }, []);
@@ -83,7 +83,7 @@ const LoginForm = () => {
       await login({
         email: formData.username,
         password: formData.password,
-      }).unwrap(); // extrait les données en cas de succès, lance une erreur en cas déchec(catpturée dans catch)
+      }).unwrap(); // extrait les données en cas de succès, lance une erreur en cas déchec
 
       // le token sera géré par le authSlice via les matchers
       console.log("✅ Connexion réussie !");
@@ -94,10 +94,9 @@ const LoginForm = () => {
 
   return (
     <section className="sign-in-content">
-      <UserIcon size="large" />
+      <Icon size="large" type="user" />
       {/*A ajuster le style, manque un espace entre l icon et le texte*/}
       <h1>Sign In</h1>
-      {/* {error && <div className="error-text">{error}</div>}  */}
       <form onSubmit={handleSubmit}>
         <InputField
           id="username"
@@ -107,7 +106,7 @@ const LoginForm = () => {
           autoComplete="username"
           value={formData.username || ""}
           onChange={handleChange}
-          disabled={isLoading} // empêche la soumission du formulaire si le statut est "loading"
+          disabled={isLoading} 
         />
         <InputField
           id="password"
@@ -115,7 +114,7 @@ const LoginForm = () => {
           label="Password"
           type="password"
           autoComplete="current-password"
-          value={formData.password || ""} // Ajout de ||"" pour éviter undefined (inputs controlled/uncontrolled)
+          value={formData.password || ""} 
           onChange={handleChange}
           disabled={isLoading}
         />
@@ -123,7 +122,7 @@ const LoginForm = () => {
           id="remember-me"
           name="rememberMe"
           label="Remember me"
-          defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
+          defaultChecked={false} 
           onChange={handleChange}
           disabled={isLoading}
         />
@@ -131,6 +130,7 @@ const LoginForm = () => {
           type="submit"
           disabled={isLoading}
           text={isLoading ? "Loading..." : "Sign In"}
+          onClick={handleSubmit}
         />
         {error && (
           <div className="error-text">

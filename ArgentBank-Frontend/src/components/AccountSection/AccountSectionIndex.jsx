@@ -30,7 +30,7 @@ const AccountSection = () => {
       description: "Current Balance"
     }
   ]
-// Faire un map sur les données récupérées avec  redux depuis l'api (elles ne sont pas dans l'API je dois créer les routes .. en deuxième partie du projet)
+// Faire un map sur les données récupérées avec  redux depuis l'api, pour l'instant gardé ces données ci-dessus (elles ne sont pas dans l'API je dois créer les routes .. en deuxième partie du projet)
   return (
     <div>
       <h2 className="sr-only">Accounts</h2>

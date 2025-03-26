@@ -1,15 +1,15 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
 import { useGetProfileQuery } from '../../store/api/argentBankApi'
 import { logout, selectIsAuthenticated } from '../../store/features/auth/authSlice'
 
 import '../../styles/main.css'
 // import Logo from '../Logo/Logo'
-import UserIcon from '../UserIcon/UserIconIndex'
+import Icon from '../Icons/IconIndex'
 
 /**
  * Nav component - Navigation principale
- * 
+ * @returns {JSX.Element} Navigation avec les liens
  * utilise les styles du template main.css
  * 
  */
@@ -43,10 +43,10 @@ const getLinkClass = ({isActive}) => {
                     <>
                         <NavLink to="/user" className={getLinkClass} title="Profile">
                             <span className="username">{profile?.userName}</span>
-                            <UserIcon type="user" />
+                            <Icon size="default" type="user" />
                         </NavLink>
                         <NavLink to="/user/settings" className={getLinkClass} title="Settings">
-                            <UserIcon type="settings" />
+                            <Icon size="default" type="settings" />
                         </NavLink>
                         <NavLink
                             to="/"
@@ -54,14 +54,14 @@ const getLinkClass = ({isActive}) => {
                             className="main-nav-item sign-out-button"
                             title="Sign Out"
                         >
-                            <UserIcon type="signout" />
+                            <Icon size="default" type="signout" />
                         </NavLink>
                     </>
                 ) : (
-                <Link className="main-nav-item" to="/login" title="Sign In">
-                    <UserIcon size="default" />
+                <NavLink className="main-nav-item" to="/login" title="Sign In">
+                    <Icon size="default" type="user" />
                     Sign In
-                </Link>
+                </NavLink>
                 )
 }
             </div>

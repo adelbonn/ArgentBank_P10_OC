@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { argentBankApi } from "../../store/api/argentBankApi";
 import {
-  fetchUserProfile,
   selectUserProfile,
   selectUserStatus,
   selectUserError,
@@ -20,7 +19,7 @@ import "../../styles/main.css";
 
 /**
  * Page User - Dashboard utilisateur
- * Utilise les styles du template main.css
+ * 
  * @returns {JSX.Element}
  */
 
@@ -29,25 +28,23 @@ const User = () => {
  
 const [updateProfile] = useUpdateProfileMutation();
 
-  //utilisation des selectors mémorisés
-  //const isAuthenticated = useSelector(selectIsAuthenticated);
+  //utilisation des selectors mémorisés avec useSelector
   const userProfile = useSelector(selectUserProfile);
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
-  // etat local qui controle l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
+  //Gestion de l'état de l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
   const [isEditing, setIsEditing] = useState(false);
 
 
 
-  // Gestionnaire pour sauvegarder les modifications
+  //  Gestionnaire pour sauvegarder les modifications
   const handleSave = async (newUserName) => {
     try {
       // Appel de la mutation RTK Query
-     const result =  await updateProfile({ userName: newUserName }).unwrap(); // unwrap pour la gestion d'erreur ou de reussite de la promise renvoyée (contient soit la valeur action.payload réelle si action exécutée (permet de gérer la reussite ou l'échec) soit une erreur si action est rejetée)  et updateProfile est une mutation creator de RTK Query
-      // recharge le profil pour mettre à jour l'ui
+     const result =  await updateProfile({ userName: newUserName }).unwrap(); // unwrap pour la gestion d'erreur ou de reussite de la promise renvoyée
       if (result) {
         // recharge le profil pour mettre à jour l'ui
-       dispatch(fetchUserProfile()); // fetchUserProfile est un action creator qui vient du userSlice
+       dispatch(argentBankApi.endpoints.getProfile.initiate()); 
         setIsEditing(false);
       }
     } catch (error) {

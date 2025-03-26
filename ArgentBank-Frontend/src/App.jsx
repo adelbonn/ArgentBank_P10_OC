@@ -5,11 +5,12 @@ import NotFound from "./pages/NotFound/NotFoundIndex";
 import Login from "./pages/Login/LoginIndex";
 import User from "./pages/User/UserIndex";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutesIndex";
+
 import "./styles/main.css"; // import du style du projet
 
 /***
  * composant principal de l'appli
- * Gère le routage et le Layout
+ * Gère le routage et le Layout : créer un component spécifique pour lke routage
  */
 
 const App = () => {

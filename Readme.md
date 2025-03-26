@@ -1,6 +1,7 @@
 # Argent Bank - Application Bancaire
 
 ## Table des matières
+
 - [À propos](#à-propos)
 - [Technologies Utilisées](#technologies-utilisées)
   - [Frontend](#frontend)
@@ -17,14 +18,15 @@
   - [Green Code](#green-code)
   - [Redux Best Practices](#redux-best-practices)
 - [Auteur](#auteur)
-- [Licence](#licence)
 
 ## À propos
+
 Argent Bank est une application bancaire permettant aux utilisateurs de se connecter et de gérer leurs comptes et leur profil. Ce projet utilise React pour le frontend et une API RESTful pour le backend.
 
 ## Technologies Utilisées
 
 ### Frontend
+
 - React 19 avec Vite
 - Redux Toolkit pour la gestion d'état
 - React Router pour la navigation
@@ -32,12 +34,14 @@ Argent Bank est une application bancaire permettant aux utilisateurs de se conne
 - Vite comme bundler
 
 ### Backend
+
 - Node.js v12.22.12
 - Express
 - MongoDB
 - JWT pour l'authentification
 
 ## Prérequis
+
 - Node.js v12.22.12
 - MongoDB
 - Git
@@ -75,9 +79,11 @@ npm run dev
 ## Documentation
 
 ### API Endpoints
+
 Documentation Swagger disponible sur : `http://localhost:3001/api-docs`
 
 Points d'accès principaux :
+
 - `POST /api/v1/user/login` - Authentification
 - `POST /api/v1/user/signup` - Création de compte
 - `POST /api/v1/user/profile` - Récupération du profil
@@ -98,16 +104,19 @@ Steve Rogers
 ## Bonnes Pratiques
 
 ### Green Code
+
 - Optimisation des images et assets
 - Lazy loading des composants React
 - Minimisation des requêtes API
 - Utilisation de Redux pour le cache local
 
 ### Redux Best Practices
+
 - Utilisation des slices Redux Toolkit
 - Actions et reducers typés
 - Gestion d'état optimisée
 - Sélecteurs mémorisés
 
 ## Auteur
-[Votre Nom] - Projet réalisé dans le cadre de la formation OpenClassrooms
+
+[Adeline Bonnamour] - Projet réalisé dans le cadre de la formation OpenClassrooms

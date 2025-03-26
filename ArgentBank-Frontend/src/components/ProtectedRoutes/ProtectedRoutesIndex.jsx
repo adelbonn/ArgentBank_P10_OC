@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom' // ajouter outlet a la place de children
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { selectIsAuthenticated } from '../../store/features/auth/authSlice' // ajouter selectIsAuthenticated à la place de isAuthenticated()
+import { selectIsAuthenticated } from '../../store/features/auth/authSlice' 
 
 const ProtectedRoutes = ({ children}) => {
 const isAuthenticated = useSelector(selectIsAuthenticated)
@@ -13,7 +13,7 @@ if (!isAuthenticated) {
 }
 
 // si authentifié rendre les routes enfants
-return children;  // a améliorer avec children || <outlet/>, cf documentation react-router-dom
+return children;  // a améliorer  children || <outlet/>, cf documentation react-router-dom
 }
 
 

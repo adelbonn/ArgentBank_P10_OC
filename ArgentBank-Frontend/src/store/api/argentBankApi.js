@@ -1,36 +1,25 @@
-// import des fonctions nécessaires de RTK query
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
-// Creation de l'API slice
 export const argentBankApi = createApi({
-  // Nom de ce slice dans le store redux
   reducerPath: "argentBankApi",
-
-  // configuration de base pour toutes les requêtes API
   baseQuery: fetchBaseQuery({
-    // Url de base pour toutes les requêtes API
     baseUrl: "http://localhost:3001/api/v1",
-
-    // préparation des headers pour chaque requêtes (s'execute avt chaque requêtes pour préparer les headers)
+/*************  ✨ Codeium Command 🌟  *************/
     prepareHeaders: (headers, { getState }) => {
       // Récupération du token du state redux
-     
-const token = getState().auth.token;
-      // Si le token est disponible, on l'ajoute dans l'entête
+      const token = getState().auth.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
       headers.set("Content-Type", "application/json");
       return headers;
     },
+/******  29490ca7-5108-40b9-a0ce-eee28b80991a  *******/
   }),
-  // Tags pour la gestion du cache
   tagTypes: ["Profile"],
 
   //definition des endpoints de l'API
-
-  endpoints: (builder) => ({
+ endpoints: (builder) => ({
     // Endpoint de login (mutation car modifie les données (.mutation pour les requêtes qui modifie les données ((POST, PUT, DELETE)))
     login: builder.mutation({
       query: (credentials) => ({
@@ -46,11 +35,11 @@ const token = getState().auth.token;
     getProfile: builder.query({
       query: () => "/user/profile",
       method: "GET",
-      // Transformation de la réponse
+
       transformResponse: (response) => response.body,
 
       // ce endpoint fourni les données du tag 'Profile' (tag pour le cache)
-      providesTags: ["Profile"], 
+      providesTags: ["Profile"],
     }),
     // Endpoint pour mettre à jour le profil
     updateProfile: builder.mutation({
