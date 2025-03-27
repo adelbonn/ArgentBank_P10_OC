@@ -26,7 +26,10 @@ export const argentBankApi = createApi({
         body: credentials,
       }),
       // Transformation de la réponse avant de la mettre en cache
-      transformResponse: (response) => response.body,
+      transformResponse: (response) => {
+        console.log("👀 Response from login endpoint:", response);
+        return response.body;
+      },
     }),
 
     // endpoint pour récupérer le profil (query car lecture seule, .query pour les requêtes qui lisent les données (GET))

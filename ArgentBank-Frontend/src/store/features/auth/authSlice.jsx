@@ -66,7 +66,7 @@ export const { logout } = authSlice.actions;
 
 // Sélecteurs pour accéder à l'état (extrait des parties spécifique du state)
 export const selectAuth = (state) => state.auth;
-export const selectIsAuthenticated = (state) => !!state.auth.token;
+export const selectIsAuthenticated = (state) => !!state.auth.token; 
 export const selectAuthStatus = (state) => state.auth.status;
 export const selectAuthError = (state) => state.auth.error;
 

@@ -20,7 +20,7 @@ import Icon from "../Icons/IconIndex";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+ //  const dispatch = useDispatch();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   // Utilisation du hook généré par RTK Query
   const [login, { isLoading, error }] = useLoginMutation();
