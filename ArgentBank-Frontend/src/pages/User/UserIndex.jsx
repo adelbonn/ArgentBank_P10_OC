@@ -25,14 +25,14 @@ import "../../styles/main.css";
 
 const User = () => {
   const dispatch = useDispatch();
- 
-const [updateProfile] = useUpdateProfileMutation();
-
-  //utilisation des selectors mémorisés avec useSelector
+  // Utilisation du hook généré par RTK Query pour la mutation updateProfile (mutation car modifie les données)
+  const [updateProfile] = useUpdateProfileMutation();
+  // Récupération des données du profil depuis le store 
   const userProfile = useSelector(selectUserProfile);
+  // Récupération des états de chargement et d'erreur
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
-  //Gestion de l'état de l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
+  // Gestion de l'état de l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
   const [isEditing, setIsEditing] = useState(false);
 
 
@@ -58,7 +58,7 @@ const [updateProfile] = useUpdateProfileMutation();
   };
 
   // Affichage pendant le chargement
-  if (status === "loading") {
+  if (!userProfile || status === "loading") {
     return <div className="loading">Chargement...</div>;
   }
 

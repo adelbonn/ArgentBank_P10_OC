@@ -23,7 +23,8 @@ const Account = ({ title, accountNumber, amount, description }) => {
       </div>
       <div className="account-content-wrapper cta">
         {/* {/**Ajouter une logique pour la position de la flèche et ne pas la mettre en button qui a la className transaction-button (c'est le button générique) et mettre la bonne icon que voici :  <FontAwesomeIcon icon="fas fa-chevron-right" />/, et l'icone de fermeture : <FontAwesomeIcon icon="fa-sharp-duotone fa-regular fa-xmark" /> } */}
-        <button className="transaction-button"> <i className="fa fa-chevron-right" aria-hidden="true"/></button>
+        {/* <button className="transaction-button"> <i className="fa fa-chevron-right" aria-hidden="true"/></button> */}
+        <button className="transaction-button">View transactions</button>
       </div>
     </section>
   )

@@ -20,7 +20,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-      // Action de déconnexion simplifiée
+      // Action de déconnexion 
     logout: (state) => {
       state.isAuthenticated = false;
       state.status = "idle";
@@ -31,7 +31,7 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-    // utilisation des matchers query pour suivre l'état des requêtes
+    // utilisation des matchers pour suivre l'état des requêtes
       // gere les états de mutation login avec argentBankApi
       // .addMatcher écoute les actions RTK Query pour mettre à jour l'état (les états possible étant 'idle', 'loading', 'succeeded', 'failed')
       .addMatcher(argentBankApi.endpoints.login.matchPending, (state) => {
@@ -66,7 +66,7 @@ export const { logout } = authSlice.actions;
 
 // Sélecteurs pour accéder à l'état (extrait des parties spécifique du state)
 export const selectAuth = (state) => state.auth;
-export const selectIsAuthenticated = (state) => !!state.auth.token; 
+export const selectIsAuthenticated = (state) => !!state.auth.token; // !! convertit la valeur en booléen si elle est null ou undefined renvoie false sinon true 
 export const selectAuthStatus = (state) => state.auth.status;
 export const selectAuthError = (state) => state.auth.error;
 

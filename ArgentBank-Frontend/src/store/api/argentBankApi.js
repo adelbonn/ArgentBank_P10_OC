@@ -1,9 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
+const baseUrlApi = "http://localhost:3001/api/v1";
+
 export const argentBankApi = createApi({
   reducerPath: "argentBankApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001/api/v1",
+    baseUrl: baseUrlApi,
     prepareHeaders: (headers, { getState }) => {
       // Récupération du token du state redux
       const token = getState().auth.token;

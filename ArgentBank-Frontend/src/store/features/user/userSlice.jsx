@@ -102,10 +102,12 @@ import { argentBankApi } from "../../api/argentBankApi";
 
 // Etat initial du slice
 const initialState = {
-  firstName: "",
-  lastName: "",
-  userName: "",
-  email: "",
+  profile: {
+    firstName: "",
+    lastName: "",
+    userName: "",
+    email: "",
+  },
   status: "idle", 
   error: null,
 };
@@ -123,11 +125,6 @@ const userSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      // pendant le chargment, gestion de fetchUserProfile
-      // .addCase(fetchUserProfile.pending, (state) => {
-      //   state.status = "loading";
-      //   state.error = null;
-      // })
       .addMatcher(argentBankApi.endpoints.getProfile.matchPending, (state) => {
         state.status = "pending";
         state.error = null;
@@ -135,10 +132,12 @@ const userSlice = createSlice({
       // en cas de succès
       .addMatcher(argentBankApi.endpoints.getProfile.matchFulfilled, (state, action) => {
         state.status = "succeeded";
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName;
-        state.userName = action.payload.userName;
-        state.email = action.payload.email;
+        state.profile = {
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          userName: action.payload.userName,
+          email: action.payload.email
+        }
         state.error = null;
       })
 
@@ -171,7 +170,7 @@ export const { resetUser } = userSlice.actions;
 
 
 // selecteurs pour accéder aux données du profil
-export const selectUserProfile = (state) => state.user;
+export const selectUserProfile = (state) => state.user.profile;
 
 export const selectUserStatus = (state) => state.user.status;
 

@@ -1,0 +1,11 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  .input-wrapper label {
+    font-weight: bold;
+    color: white; /* vérifier et mettre le bon style*/
+  }
+  

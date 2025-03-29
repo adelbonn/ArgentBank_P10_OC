@@ -1,0 +1,29 @@
+/* Navigation */
+
+.main-nav a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  .main-nav a.router-link-exact-active {
+    color: #42b983;
+  }
+  .main-nav-items{
+      display: flex;
+      align-items: center;
+  }
+  .main-nav-item {
+    text-decoration: none;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .main-nav-item:hover {
+    text-decoration: underline;
+    color: #42b983;
+  }
+  .username {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }

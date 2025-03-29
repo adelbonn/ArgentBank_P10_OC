@@ -1,5 +1,6 @@
 // InputFieldIndex.jsx
 import PropTypes from 'prop-types'
+import style from './InputField.module.css'
 
 /**
  * Composant InputField - Champ de saisie réutilisable
@@ -16,8 +17,8 @@ import PropTypes from 'prop-types'
 
 function InputField({ label, type, id, value,name, onChange, autoComplete }) {
   return (
-    <div className="input-wrapper">
-      <label htmlFor={id}>{label}</label>
+    <div className={style["input-wrapper"]}>
+      <label className= {style['input-wrapper-label']} htmlFor={id}>{label}</label>
       <input 
         type={type}
         id={id}

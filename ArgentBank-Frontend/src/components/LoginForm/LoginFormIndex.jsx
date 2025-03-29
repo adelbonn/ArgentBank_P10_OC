@@ -20,9 +20,7 @@ import Icon from "../Icons/IconIndex";
 
 const LoginForm = () => {
   const navigate = useNavigate();
- //  const dispatch = useDispatch();
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  // Utilisation du hook généré par RTK Query
   const [login, { isLoading, error }] = useLoginMutation();
 
   // Redirection si dejà authentifié
@@ -31,27 +29,26 @@ const LoginForm = () => {
       navigate("/user");
     }
   }, [isAuthenticated, navigate]);
-
-  // Récupération des identifiants sauvegardés (vérifié si bien chargé dans le localStorage)
-  useEffect(() => {
-    const savedCredentials = localStorage.getItem("rememberCredentials");
-    if (savedCredentials) {
-      const { email, password } = JSON.parse(savedCredentials);
-      setFormData((prev) => ({
-        ...prev,
-        username: email,
-        password,
-        rememberMe: true,
-      }));
-    }
-  }, []);
-
+  
   // état local du formulaire
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     rememberMe: false,
   });
+
+  // Récupération des identifiants (email) sauvegardés (vérifié si bien chargé dans le localStorage)
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if (rememberedEmail) {
+      setFormData((prev) => ({
+        ...prev,
+        username: rememberedEmail,
+        rememberMe: true,
+      }));
+    }
+  }, []);
+
 
   // Gestion des changements dans le formulaire
   const handleChange = (e) => {
@@ -65,19 +62,12 @@ const LoginForm = () => {
   // Soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Gestion du rememberMe
+      // gestion de rememberMe (uniquement l'email, plus sécur)(sauvegardé dans le localStorage) 
       if (formData.rememberMe) {
-        localStorage.setItem(
-          "rememberCredentials",
-          JSON.stringify({
-            email: formData.username,
-            password: formData.password,
-          })
-        );
+        localStorage.setItem("rememberedEmail", formData.username);
       } else {
-        localStorage.removeItem("rememberCredentials");
+        localStorage.removeItem("rememberedEmail");
       }
       // Appel de l'API avec RTK query
       await login({
@@ -119,10 +109,10 @@ const LoginForm = () => {
           disabled={isLoading}
         />
         <CheckBoxField
-          id="remember-me"
+          id="rememberMe"
           name="rememberMe"
           label="Remember me"
-          defaultChecked={false} 
+          checked={formData.rememberMe} 
           onChange={handleChange}
           disabled={isLoading}
         />

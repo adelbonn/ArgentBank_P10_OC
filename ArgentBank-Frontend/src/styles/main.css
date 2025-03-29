@@ -34,14 +34,15 @@ body {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-
-.main-nav {
+/*dans Header*/
+/* .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
-
+/*dans Nav*/
+/*
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -64,10 +65,11 @@ body {
 .main-nav-item:hover {
   text-decoration: underline;
   color: #42b983;
-}
-.username {
+} */
+/* .username {
   margin-right: 0.5rem;
-}
+  margin-left: 0.5rem;
+} */
 .sign-out-button {
   border: none;
   background: none;
@@ -78,7 +80,8 @@ body {
   padding: 0;
   margin: 0;
 }
-.main-nav-logo {
+/*Logo*/
+/* .main-nav-logo {
   display: flex;
   align-items: center;
 }
@@ -86,7 +89,7 @@ body {
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
-}
+} */
 /*Image de fond et positionnement */
 .hero {
   background-image: url('../../src/assets/img/bank-tree.jpeg');
@@ -141,17 +144,18 @@ body {
   }
 }
 
-.features {
-  display: flex;
-  flex-direction: column;
-}
 
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
   }
 }
-
+/*importer dans FeatureIndex*/
+/* .features {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+} */
 .feature-icon {
   width: 100px;
   border: 10px solid #00bc77;
@@ -159,17 +163,18 @@ body {
   padding: 1rem;
 }
 
-.feature-item {
+/*ds FeatureItem*/
+/* .feature-item {
   flex: 1;
   padding: 2.5rem;
-}
+} 
 
 .feature-item-title {
   color: #222;
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-}
+}*/
 
 .sign-in-button {
   display: block;
@@ -178,6 +183,7 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
+  margin-left: 0.5rem;
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
@@ -191,11 +197,11 @@ body {
   margin-top: 3rem;
   padding: 2rem;
 }
-
+/*SignIn icon type user en haut du formulaire de connection*/
 .sign-in-icon {
   font-size: 5rem;
 }
-
+/*InputField */
 .input-remember {
   display: flex;
 }
@@ -203,24 +209,25 @@ body {
 .input-remember label {
   margin-left: 0.25rem;
 }
-
-.input-wrapper {
+/**InputField */
+/* .input-wrapper {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
-}
+} */
 
-.input-wrapper label {
+/* .input-wrapper label {
   font-weight: bold;
-  color: white; /* vérifier et mettre le bon style*/
-}
+  color: white; /* vérifier et mettre le bon style
+} */
 
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
 }
-
+/*Footer*/
+/* 
 .footer {
   display: flex;
   justify-content: center;
@@ -231,7 +238,7 @@ body {
 .footer-text {
   margin: 0;
   padding: 0;
-}
+} */
 
 .account {
   display: flex;
@@ -278,10 +285,10 @@ body {
   padding: 10px;
 }
 
-.header {
+/* .header {
   color: #fff;
   margin-bottom: 2rem;
-}
+} */
 
 .transaction-button {
   display: block;
