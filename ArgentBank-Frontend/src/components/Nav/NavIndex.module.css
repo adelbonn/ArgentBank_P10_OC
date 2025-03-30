@@ -6,10 +6,11 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    
 
   }
   
-  .mainNav a.router-link-exact-active {
+  .mainNav a.routerLinkExactActive {
     color: #42b983;
   }
   .mainNavItems{

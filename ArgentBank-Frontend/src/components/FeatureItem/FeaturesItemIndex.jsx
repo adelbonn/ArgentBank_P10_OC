@@ -16,9 +16,9 @@ import style from './FeatureItem.module.css'
 
 const FeatureItem = ({ imgSrc, imgAlt, title, description }) => {
   return (
-    <div className={style['feature-item']}>
+    <div className={style.featureItem}>
       <img src={imgSrc} alt={imgAlt} className="feature-icon" />
-      <h3 className={style['feature-item-title']}>{title}</h3>
+      <h3 className={style.featureItemTitle}>{title}</h3>
       <p>{description}</p>
     </div>
   )

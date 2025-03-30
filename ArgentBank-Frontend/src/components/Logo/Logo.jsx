@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import logoImg from '../../assets/img/img-optimisées/argentBankLogo.webp'  // optimisé cette img changer en webp
 
-
 import style from './Logo.module.css'
+
 /**
  * Composant Logo 
  * @param {Object} props
@@ -15,16 +15,14 @@ import style from './Logo.module.css'
  */
 
 function Logo({ 
-  className = style['main-nav-logo'],
-  imgClassName = style['main-nav-logo-image'],
   src = logoImg,
   alt = 'Argent Bank Logo',
   onClick = () => {}
 }) {
   return (
-    <Link className={className} to="/" onClick={onClick}>
+    <Link className={style.mainNavLogo} to="/" onClick={onClick}>
       <img
-        className={imgClassName}
+        className={style.mainNavLogoImage}
         src={src}
         alt={alt}
       />
@@ -33,8 +31,6 @@ function Logo({
 }
 
 Logo.propTypes = {
-  className: PropTypes.string,
-  imgClassName: PropTypes.string,
   src: PropTypes.string,
   alt: PropTypes.string
 }

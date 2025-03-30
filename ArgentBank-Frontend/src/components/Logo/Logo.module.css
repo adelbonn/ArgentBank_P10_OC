@@ -1,9 +1,9 @@
-.main-nav-logo {
+.mainNavLogo {
     display: flex;
     align-items: center;
   }
   
-  .main-nav-logo-image {
+  .mainNavLogoImage {
     max-width: 100%;
     width: 200px;
   }

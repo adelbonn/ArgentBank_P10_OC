@@ -35,8 +35,6 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             value={newUserName}
             onChange={(e) => setNewUserName(e.target.value)}
           />
-   
-
   
           <InputField
             id="firstname"
@@ -49,9 +47,7 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             onChange={() => {}}  // fonction vide car champ desactivé
             className={style.inputDisabled}
           />
-    
 
-    
           <InputField
             id="lastname"
             name="lastname"
@@ -63,15 +59,10 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             onChange={() => {}}  // fonction vide car champ desactivé comme pour le firstname
             className={style.inputDisabled}
           />
-    
 
         <div className={style.editProfileButtons}>
-          <Button className={style.editButton} onClick={handleSubmit}>
-            Save
-          </Button>
-          <Button className={style.editButton} onClick={handleCancel}>
-            Cancel
-          </Button>
+          <Button className={style.editButton} text="Save" onClick={handleSubmit} type="submit"/>
+          <Button className={style.editButton} text="Cancel" onClick={handleCancel} type="button"/>
         </div>
       </form>
     </div>

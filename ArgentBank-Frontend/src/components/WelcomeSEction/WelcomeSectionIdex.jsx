@@ -1,4 +1,5 @@
 import style from './WelcomeSection.module.css'
+import Button from '../Button/ButtonIndex'
 
 /**
  * Composant WelcomeSection - En-tête de la page utilisateur
@@ -13,9 +14,7 @@ const WelcomeSection = ({ firstName, lastName, onEdit }) => {
     return (
       <div>
         <h1>Welcome back<br />{firstName} {lastName}!</h1>
-        <button className={style.editButton} onClick={onEdit}>
-          Edit Name
-        </button>
+        <Button className={style.editButton} onClick={onEdit} text="Edit Name" type="button" />
       </div>
     )
   }

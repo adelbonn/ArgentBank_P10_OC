@@ -1,10 +1,11 @@
 
 import PropTypes from 'prop-types'
-import '../../styles/main.css'
 import style from './AccountIndex.module.css'
+import Button from '../Button/ButtonIndex'
+
+import { useState } from 'react'
 /**
  * Composant Account - Affiche les informations d'un compte bancaire
- * Composant a réutilisé pour les lignes de comptes quand elles seront affichées
  * @param {Object} props
  * @param {string} props.title - Titre du compte (ex: "Argent Bank Checking")
  * @param {string} props.accountNumber - Numéro du compte (ex: "x8349")
@@ -12,6 +13,8 @@ import style from './AccountIndex.module.css'
  * @param {string} props.description - Description (ex: "Available Balance")
  */
 const Account = ({ title, accountNumber, amount, description }) => {
+  // état pour afficher ou masquer le formulaire de modification
+  const [showTransaction, setShowTransaction] = useState(false)
   return (
     <section className={style.account}>
       <div className={style.accountContentWrapper}>
@@ -23,8 +26,18 @@ const Account = ({ title, accountNumber, amount, description }) => {
       </div>
       <div className={style.accountContentWrapperCta}>
 
-        <button className={style.transactionButton}>View transactions</button>
+        <Button 
+        text="View transactions" 
+        className={style.transactionButton}
+        onClick={() => setShowTransaction(!showTransaction)}
+        />
       </div>
+     {showTransaction && (
+      <div className={style.transactionWrapper}>
+        <p>Transactions,
+          emplacement component transaction</p>
+      </div>
+     )}
     </section>
   )
 }

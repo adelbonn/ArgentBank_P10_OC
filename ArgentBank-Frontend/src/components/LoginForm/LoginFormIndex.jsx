@@ -10,7 +10,7 @@ import { useLoginMutation } from "../../store/api/argentBankApi";
 import CheckBoxField from "../CheckBoxField/CheckBoxFieldIndex";
 import InputField from "../InputField/InputFieldIndex";
 import SignInButton from "../SigInButton/SignInButtonIndex";
-import Icon from "../Icons/IconIndex";
+import Icon from "../Icons/Icon";
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login

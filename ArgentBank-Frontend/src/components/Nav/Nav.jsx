@@ -6,7 +6,7 @@ import style from  './NavIndex.module.css'
 
 // import '../../styles/main.css'
 
-import Icon from '../Icons/IconIndex'
+import Icon from '../Icons/Icon'
 
 /**
  * Nav component - Navigation principale
@@ -52,7 +52,7 @@ const getLinkClass = ({isActive}) => {
                         <NavLink
                             to="/"
                             onClick={handleLogout}
-                            className={`${style.mainNavItem} ${style.signOutButton}`} // Ajoutez la classe main-nav-item sign-out-button}
+                            className={getLinkClass}
                             title="Sign Out"
                         >
                             <Icon size="default" type="signout" />
