@@ -29,7 +29,7 @@ const User = () => {
   const [updateProfile] = useUpdateProfileMutation();
   // Récupération des données du profil depuis le store 
   const userProfile = useSelector(selectUserProfile);
-  // Récupération des états de chargement et d'erreur
+
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
   // Gestion de l'état de l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)

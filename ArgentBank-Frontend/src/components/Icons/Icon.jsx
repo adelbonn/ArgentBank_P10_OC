@@ -1,6 +1,8 @@
  import { FaUserCircle } from 'react-icons/fa';
  import { FaPowerOff } from 'react-icons/fa';
  import { FaGear } from "react-icons/fa6";
+ import { FaArrowRight } from "react-icons/fa6";
+ //import { FaTimes } from "react-icons/fa6";
 import PropTypes from 'prop-types';
 
 import style from './IconsIndex.module.css';
@@ -21,7 +23,9 @@ const Icon = ({ size = 'default', type = 'user', className }) => { //function Ic
 const iconComponents = {
   user: FaUserCircle,
   signout: FaPowerOff,
-  settings: FaGear
+  settings: FaGear,
+  // cross: FaTimes,
+  arrowRight: FaArrowRight
 }
 // selectionne l'icone enfonction du type
 const IconComponent = iconComponents[type]
@@ -35,7 +39,7 @@ return <IconComponent size={iconSize} className={`${iconClass} ${className}`} />
 
 Icon.propTypes = {
   size: PropTypes.oneOf(['default', 'large']),
-  type: PropTypes.oneOf(['user', 'signout', 'settings']),
+  type: PropTypes.oneOf(['user', 'signout', 'settings', 'arrowRight']),
   className: PropTypes.string
 }
 

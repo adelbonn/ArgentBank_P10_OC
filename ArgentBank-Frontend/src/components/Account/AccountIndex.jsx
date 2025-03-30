@@ -1,9 +1,10 @@
-
 import PropTypes from 'prop-types'
 import style from './AccountIndex.module.css'
 import Button from '../Button/ButtonIndex'
-
+import Transaction from '../Transactions/TransactionIndex'
+// import Icon from '../Icons/Icon'
 import { useState } from 'react'
+
 /**
  * Composant Account - Affiche les informations d'un compte bancaire
  * @param {Object} props
@@ -12,32 +13,39 @@ import { useState } from 'react'
  * @param {string} props.amount - Montant du compte
  * @param {string} props.description - Description (ex: "Available Balance")
  */
-const Account = ({ title, accountNumber, amount, description }) => {
-  // état pour afficher ou masquer le formulaire de modification
+
+
+const Account = ({ title, accountNumber, amount, description, onTransactionView, isActive }) => {
+  // état pour afficher ou masquer le tableau des transactions
   const [showTransaction, setShowTransaction] = useState(false)
+// gestion des événements
+const handleTransactionToggle = () => {
+  const newState = !showTransaction;
+  setShowTransaction(newState);
+  // informe le parent si on affiche ou masque le tableau des transactions
+  onTransactionView && onTransactionView(newState)
+}
   return (
-    <section className={style.account}>
+    <section className={`${style.account} ${isActive ? style.active : ''}`}>
       <div className={style.accountContentWrapper}>
         <h3 className={style.accountTitle}>
-          {title} ({accountNumber})
+          {title} 
         </h3>
+        <p className={style.accountNumber}>{accountNumber}</p>
         <p className={style.accountAmount}>{amount}</p>
         <p className={style.accountAmountDescription}>{description}</p>
       </div>
       <div className={style.accountContentWrapperCta}>
 
         <Button 
-        text="View transactions" 
+        text={showTransaction ? 'Hide Transactions' : 'View Transactions'} 
         className={style.transactionButton}
-        onClick={() => setShowTransaction(!showTransaction)}
+        onClick={handleTransactionToggle}
         />
       </div>
-     {showTransaction && (
-      <div className={style.transactionWrapper}>
-        <p>Transactions,
-          emplacement component transaction</p>
-      </div>
-     )}
+     {/* {showTransaction && (
+      <Transaction /> 
+     )} */}
     </section>
   )
 }

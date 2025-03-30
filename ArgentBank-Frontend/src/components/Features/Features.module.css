@@ -1,6 +1,11 @@
-.features {
+
+  .features {
     display: flex;
-    /* flex-direction: column; */
-    background-color: #fff;
+    flex-direction: column;
   }
   
+  @media (min-width: 920px) {
+    .features {
+      flex-direction: row;
+    }
+  }

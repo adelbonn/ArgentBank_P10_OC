@@ -1,48 +1,63 @@
+import Account from "../Account/AccountIndex";
+import { AccountData } from "../../assets/Data/AccountData"; // importer les data de account depuis le dossier Data en attendant que les données viennent de l'api
+import style from "./AccountSection.module.css";
+import PropTypes from "prop-types";
 
-import Account from '../Account/AccountIndex'
-import '../../styles/main.css'
-// import { AccountData } from '../../assets/Data/AccountData'// importer les data de account depuis le dossier Data en attendant que les données viennenet de l'api
-// import style from './AccountSection.module.css'
+import { useState } from "react";
+
+import Transaction from "../Transactions/TransactionIndex";
+import { transactionsData } from "../../assets/Data/TransactionsData";
 /**
- * Composant AccountSection - Container liste de comptes
+ * Composant AccountSection - Container liste des comptes
+ * @param {Object} props
+ * @param {Array} props.accounts - Liste des comptes
  */
 
-
 const AccountSection = () => {
+  // pour suivre quel compte affiche les transactions
+  const [activeAccountIndex, setActiveAccountIndex] = useState(null);
 
-  // Données à remplacer par redux ensuite (vérifier si il y a ses données dans l'api avec l'endpoint /api/v1/accounts ou /api/v1/transactions ou les créer avec l'endpoint /api/v1/accounts)
- const accounts = [
-  {
-    title: "Argent Bank Checking",
-    accountNumber: "x8349",
-    amount: "$2,082.79",
-    description: "Available Balance"
-  },
-  {
-    title: "Argent Bank Savings",
-    accountNumber: "x6712",
-    amount: "$10,928.42",
-    description: "Available Balance"
-  },
-  {
-    title: "Argent Bank Credit Card",
-    accountNumber: "x8349",
-    amount: "$184.30",
-    description: "Current Balance"
-  }
-]
-// Faire un map sur les données récupérées avec  redux depuis l'api, pour l'instant gardé ces données ci-dessus (elles ne sont pas dans l'API je dois créer les routes .. en deuxième partie du projet)
+  const handleTransactionView = (index, isShowing) => {
+    // met à jour l'index du compte actif
+    setActiveAccountIndex(isShowing ? index : null);
+  };
+  
   return (
-    <div>
+    <div className={style.accountSection}>
       <h2 className="sr-only">Accounts</h2>
-      {accounts.map((account, index) => (
-        <Account
-          key={`account-${index}`}
-        {...account}
-        />
-      ))}
-    </div>
-  )
-}
 
-export default AccountSection
+      {AccountData.map((account, index) => (
+        <div
+          key={`account-container-${index}`}
+          className={
+            activeAccountIndex !== null && activeAccountIndex !== index
+              ? style.hidden
+              : ""
+          }
+        >
+          <Account
+            key={`account-${index}`}
+            {...account}
+            isActive={activeAccountIndex === index}
+            onTransactionView={(isShowing) =>
+              handleTransactionView(index, isShowing)
+            }
+          />
+        </div>
+      ))}
+
+      {activeAccountIndex !== null && (
+        <Transaction
+          transaction={transactionsData}
+          onClose={() => handleTransactionView(activeAccountIndex, false)}
+        />
+      )}
+    </div>
+  );
+};
+
+AccountSection.propTypes = {
+  accounts: PropTypes.array.isRequired,
+};
+
+export default AccountSection;

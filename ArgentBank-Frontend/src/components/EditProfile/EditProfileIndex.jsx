@@ -8,13 +8,11 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
 
   const [newUserName, setNewUserName] = useState(userName);
 
-  // Gestionnaire pour le submit du button save si modification du username
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(newUserName);
   };
 
-  // Gestionnaire pour le submit du button cancel 
   const handleCancel = (e) => {
     e.preventDefault();
     setNewUserName(userName);

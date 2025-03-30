@@ -15,10 +15,10 @@ import style from './InputField.module.css'
  * @returns {JSX.Element} Champ de saisie avec label
  */
 
-function InputField({ label, type, id, value,name, onChange, autoComplete }) {
+function InputField({ label, type, id, value, name, onChange, autoComplete }) {
   return (
-    <div className={style["input-wrapper"]}>
-      <label className= {style['input-wrapper-label']} htmlFor={id}>{label}</label>
+    <div className={style.inputWrapper}>
+      <label className= {style.inputWrapperLabel} htmlFor={id}>{label}</label>
       <input 
         type={type}
         id={id}

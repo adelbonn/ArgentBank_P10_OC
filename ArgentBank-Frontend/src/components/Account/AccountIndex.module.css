@@ -46,11 +46,13 @@
     .account {
       flex-direction: row;
     }
-  
+/*   
     .accountContentWrapper.cta {
       flex: 0;
+    } */
+    .accountContentWrapperCta {
+      flex: 0;
     }
-  
     .transactionButton {
       width: 200px;
     }

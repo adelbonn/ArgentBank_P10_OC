@@ -4,8 +4,6 @@ import { useGetProfileQuery } from '../../store/api/argentBankApi'
 import { logout, selectIsAuthenticated } from '../../store/features/auth/authSlice'
 import style from  './NavIndex.module.css'
 
-// import '../../styles/main.css'
-
 import Icon from '../Icons/Icon'
 
 /**
