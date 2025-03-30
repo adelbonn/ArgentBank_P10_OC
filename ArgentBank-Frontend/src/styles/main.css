@@ -66,11 +66,12 @@ body {
   text-decoration: underline;
   color: #42b983;
 } */
+ 
 /* .username {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
 } */
-.sign-out-button {
+/* .sign-out-button {
   border: none;
   background: none;
   cursor: pointer;
@@ -79,7 +80,7 @@ body {
   font: inherit;
   padding: 0;
   margin: 0;
-}
+} */
 /*Logo*/
 /* .main-nav-logo {
   display: flex;
@@ -91,7 +92,7 @@ body {
   width: 200px;
 } */
 /*Image de fond et positionnement */
-.hero {
+/* .hero {
   background-image: url('../../src/assets/img/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
@@ -99,7 +100,7 @@ body {
   height: 300px;
   position: relative;
 }
-/*Boite blanche contenant le texte*/
+/*Boite blanche contenant le texte
 .hero-content {
   position: relative;
   top: 2rem;
@@ -142,7 +143,7 @@ body {
   .hero-content .text {
     font-size: 1.2rem;
   }
-}
+} */
 
 
 @media (min-width: 920px) {
@@ -201,14 +202,14 @@ body {
 .sign-in-icon {
   font-size: 5rem;
 }
-/*InputField */
-.input-remember {
+/*CheckBoxField */
+/* .input-remember {
   display: flex;
 }
 
 .input-remember label {
   margin-left: 0.25rem;
-}
+} */
 /**InputField */
 /* .input-wrapper {
   display: flex;
@@ -220,12 +221,12 @@ body {
 /* .input-wrapper label {
   font-weight: bold;
   color: white; /* vérifier et mettre le bon style
-} */
+} 
 
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-}
+}*/
 /*Footer*/
 /* 
 .footer {
@@ -240,7 +241,7 @@ body {
   padding: 0;
 } */
 
-.account {
+/* .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -259,38 +260,39 @@ body {
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
-}
+} */
 
-.account-amount-description {
+/* .account-amount-description {
   margin: 0;
-}
+} */
 
-.account-title {
+/* .account-title {
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: normal;
-}
+} */
 
-.account-content-wrapper {
+/* .account-content-wrapper {
   width: 100%;
   flex: 1;
-}
-
-.edit-button {
+} */
+/**EditProfile a adapter avec Button et ajouter une logique */
+/*.edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
-}
+  border-radius: 5px;
+}*/
 
 /* .header {
   color: #fff;
   margin-bottom: 2rem;
 } */
 
-.transaction-button {
+/* .transaction-button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -300,8 +302,8 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
-}
-
+} */
+/* 
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
@@ -314,4 +316,4 @@ body {
   .transaction-button {
     width: 200px;
   }
-}
+} */

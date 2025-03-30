@@ -1,29 +1,44 @@
 /* Navigation */
 
-.main-nav a {
+.mainNav a {
     font-weight: bold;
     color: #2c3e50;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+
   }
   
-  .main-nav a.router-link-exact-active {
+  .mainNav a.router-link-exact-active {
     color: #42b983;
   }
-  .main-nav-items{
+  .mainNavItems{
       display: flex;
       align-items: center;
+      gap: 0.5rem;
   }
-  .main-nav-item {
+  .mainNavItem {
     text-decoration: none;
     margin-right: 0.5rem;
+    margin-left: 0.5rem;
     font-size: 1rem;
   }
   
-  .main-nav-item:hover {
+  .mainNavItem:hover {
     text-decoration: underline;
     color: #42b983;
   }
   .username {
     margin-right: 0.5rem;
     margin-left: 0.5rem;
+  }
+  .sign-out-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #2c3e50;
+    font-weight: bold;
+    font: inherit;
+    padding: 0;
+    margin: 0;
   }

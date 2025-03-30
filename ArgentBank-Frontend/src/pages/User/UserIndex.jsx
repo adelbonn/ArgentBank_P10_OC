@@ -10,7 +10,7 @@ import {
 
 import { useUpdateProfileMutation } from "../../store/api/argentBankApi";
 
-import WelcomeSection from "../../components/WelcomeSEction/WelcomeSectionIdex";
+import WelcomeSection from "../../components/WelcomeSection/WelcomeSectionIdex";
 import AccountSection from "../../components/AccountSection/AccountSectionIndex";
 
 import EditProfile from "../../components/EditProfile/EditProfileIndex";

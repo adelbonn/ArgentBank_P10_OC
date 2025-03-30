@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import "../../styles/main.css";
 import Subtitle from "../Subtitle/SubtitleIndex";
+
+import style from './Hero.module.css';
 
 /**
  * Composant Hero - Banner principal de la page d'accueil
@@ -12,13 +13,13 @@ import Subtitle from "../Subtitle/SubtitleIndex";
 
 function Hero({ subtitles, text }) {
   return (
-    <div className="hero">
-      <section className="hero-content">
+    <div className={style.hero}>
+      <section className={style.heroContent}>
         <h2 className="sr-only">Promoted Content</h2>
         {subtitles.map((subtitle, index) => (
           <Subtitle key={`subtitle-${index}`} text={subtitle} />
         ))}
-        <p className="text">{text}</p>
+        <p className={style.text}>{text}</p>
       </section>
     </div>
   );

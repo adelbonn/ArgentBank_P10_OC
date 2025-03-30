@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import '../../styles/main.css'
 import FeatureItem from '../FeatureItem/FeaturesItemIndex'
-import style from './FeaturesIndex.module.css'
+import style from './Features.module.css'
 
 /**
  * Composant Features - Section des fonctionnalités

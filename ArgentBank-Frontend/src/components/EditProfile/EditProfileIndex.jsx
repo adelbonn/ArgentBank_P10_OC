@@ -1,11 +1,11 @@
 import {  useState } from "react";
 import PropTypes from "prop-types";
-import "../../styles/main.css";
+import style from './EditProfile.module.css'
 import InputField from "../InputField/InputFieldIndex";
-// import style from './EditProfile.module.css'
+import Button from "../Button/ButtonIndex";
 
 const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
-  // State pour le nouveau username
+
   const [newUserName, setNewUserName] = useState(userName);
 
   // Gestionnaire pour le submit du button save si modification du username
@@ -14,7 +14,7 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
     onSave(newUserName);
   };
 
-  // Gestionnaire pour le submit du button cancel (vérifier que cela fonctionne correctement)
+  // Gestionnaire pour le submit du button cancel 
   const handleCancel = (e) => {
     e.preventDefault();
     setNewUserName(userName);
@@ -22,10 +22,10 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
   };
 
   return (
-    <div className="edit-profile">
+    <div className={style.editProfile}>
       <h2>Edit user info</h2>
-      <form className="edit-profile-form">
-        <div className="input-wrapper">
+      <form className={style.editProfileForm}>
+      
           <InputField
             id="username"
             name="username"
@@ -35,9 +35,9 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             value={newUserName}
             onChange={(e) => setNewUserName(e.target.value)}
           />
-        </div>
+   
 
-        <div className="input-wrapper">
+  
           <InputField
             id="firstname"
             name="firstname"
@@ -47,11 +47,11 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             value={firstName}
             disabled
             onChange={() => {}}  // fonction vide car champ desactivé
-            className="input-disabled"
+            className={style.inputDisabled}
           />
-        </div>
+    
 
-        <div className="input-wrapper">
+    
           <InputField
             id="lastname"
             name="lastname"
@@ -61,17 +61,17 @@ const EditProfile = ({ userName, firstName, lastName, onSave, onCancel }) => {
             value={lastName}
             disabled
             onChange={() => {}}  // fonction vide car champ desactivé comme pour le firstname
-            className="input-disabled"
+            className={style.inputDisabled}
           />
-        </div>
+    
 
-        <div className="edit-profile-buttons">
-          <button className="edit-button" onClick={handleSubmit}>
+        <div className={style.editProfileButtons}>
+          <Button className={style.editButton} onClick={handleSubmit}>
             Save
-          </button>
-          <button className="edit-button" onClick={handleCancel}>
+          </Button>
+          <Button className={style.editButton} onClick={handleCancel}>
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>

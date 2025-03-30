@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types'
 import '../../styles/main.css'
-
+import style from './AccountIndex.module.css'
 /**
  * Composant Account - Affiche les informations d'un compte bancaire
  * Composant a réutilisé pour les lignes de comptes quand elles seront affichées
@@ -13,18 +13,17 @@ import '../../styles/main.css'
  */
 const Account = ({ title, accountNumber, amount, description }) => {
   return (
-    <section className="account">
-      <div className="account-content-wrapper">
-        <h3 className="account-title">
+    <section className={style.account}>
+      <div className={style.accountContentWrapper}>
+        <h3 className={style.accountTitle}>
           {title} ({accountNumber})
         </h3>
-        <p className="account-amount">{amount}</p>
-        <p className="account-amount-description">{description}</p>
+        <p className={style.accountAmount}>{amount}</p>
+        <p className={style.accountAmountDescription}>{description}</p>
       </div>
-      <div className="account-content-wrapper cta">
-        {/* {/**Ajouter une logique pour la position de la flèche et ne pas la mettre en button qui a la className transaction-button (c'est le button générique) et mettre la bonne icon que voici :  <FontAwesomeIcon icon="fas fa-chevron-right" />/, et l'icone de fermeture : <FontAwesomeIcon icon="fa-sharp-duotone fa-regular fa-xmark" /> } */}
-        {/* <button className="transaction-button"> <i className="fa fa-chevron-right" aria-hidden="true"/></button> */}
-        <button className="transaction-button">View transactions</button>
+      <div className={style.accountContentWrapperCta}>
+
+        <button className={style.transactionButton}>View transactions</button>
       </div>
     </section>
   )

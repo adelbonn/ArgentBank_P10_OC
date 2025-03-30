@@ -34,16 +34,16 @@ const handleLogout = (event) => {
 
 // Fonction pour gerer le style des classes des liens (isActive ou non)
 const getLinkClass = ({isActive}) => {
-    return `main-nav-item ${isActive ? 'router-link-exact-active' : ''}`;
+    return `${style.mainNavItem} ${isActive ? style.routerLinkExactActive : ''}`;
 };
     return (
-        <nav className={style['main-nav']}>
+        <nav className={style.mainNav}>
             
-            <div className={style['main-nav-items']}>
+            <div className={style.mainNavItems}>
             {isAuthenticated ? (
                     <>
                         <NavLink to="/user" className={getLinkClass} title="Profile">
-                            <span className="username">{profile?.userName}</span>
+                            <span className={style.username}>{profile?.userName}</span>
                             <Icon size="default" type="user" />
                         </NavLink>
                         <NavLink to="/user/settings" className={getLinkClass} title="Settings">
@@ -52,14 +52,14 @@ const getLinkClass = ({isActive}) => {
                         <NavLink
                             to="/"
                             onClick={handleLogout}
-                            className={`${style['main-nav-item']} ${style['sign-out-button']}`} // Ajoutez la classe main-nav-item sign-out-button}
+                            className={`${style.mainNavItem} ${style.signOutButton}`} // Ajoutez la classe main-nav-item sign-out-button}
                             title="Sign Out"
                         >
                             <Icon size="default" type="signout" />
                         </NavLink>
                     </>
                 ) : (
-                <NavLink className={style['main-nav-item']} to="/login" title="Sign In">
+                <NavLink className={style.mainNavItem} to="/login" title="Sign In">
                     <Icon size="default" type="user" />
                     Sign In
                 </NavLink>

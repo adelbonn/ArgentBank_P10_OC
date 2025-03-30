@@ -8,4 +8,12 @@
     font-weight: bold;
     color: white; /* vérifier et mettre le bon style*/
   }
-  
+  .input-wrapper input {
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+  /*trouve comment cobler le deuxième et troisième element input du formulaire editProfile mais pas le mpremier input*/
+  .input-wrapper input  {
+    padding: 5px;
+    font-size: 1.2rem;
+  }
