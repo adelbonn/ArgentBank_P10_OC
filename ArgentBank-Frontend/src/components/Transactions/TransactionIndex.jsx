@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
  * Composant Transaction - Container des transactions
  * @param {Object} props
  * @param {Array} props.transactions - Liste des transactions
+ * 
  */
 
 const Transaction = ({transactions}) => {

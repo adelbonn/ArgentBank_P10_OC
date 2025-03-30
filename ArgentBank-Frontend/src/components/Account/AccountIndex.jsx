@@ -12,13 +12,14 @@ import { useState } from 'react'
  * @param {string} props.accountNumber - Numéro du compte (ex: "x8349")
  * @param {string} props.amount - Montant du compte
  * @param {string} props.description - Description (ex: "Available Balance")
+ * @param {function} props.onTransactionView - Callback pour afficher/masquer les transactions
+ * @param {boolean} props.isActive - Indique si le compte est actif
  */
 
 
 const Account = ({ title, accountNumber, amount, description, onTransactionView, isActive }) => {
-  // état pour afficher ou masquer le tableau des transactions
   const [showTransaction, setShowTransaction] = useState(false)
-// gestion des événements
+
 const handleTransactionToggle = () => {
   const newState = !showTransaction;
   setShowTransaction(newState);
@@ -43,9 +44,6 @@ const handleTransactionToggle = () => {
         onClick={handleTransactionToggle}
         />
       </div>
-     {/* {showTransaction && (
-      <Transaction /> 
-     )} */}
     </section>
   )
 }

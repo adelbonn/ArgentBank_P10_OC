@@ -1,5 +1,7 @@
 import style from './TransactionTable.module.css'
 import { transactionsData } from '../../assets/Data/TransactionsData'
+import PropTypes from 'prop-types'
+
 
 const TransactionTable = () => {
 
@@ -25,6 +27,10 @@ const TransactionTable = () => {
             </tbody>
         </table>
     )
+}
+
+TransactionTable.propTypes = {
+    transactions: PropTypes.array
 }
 
 export default TransactionTable
