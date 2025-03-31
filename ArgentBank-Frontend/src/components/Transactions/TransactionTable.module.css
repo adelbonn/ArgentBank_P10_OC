@@ -28,3 +28,9 @@
     .transactionTable tr:hover {
         background-color: #009966;
     }
+    /* .noData {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    } */

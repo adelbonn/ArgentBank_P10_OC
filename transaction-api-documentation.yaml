@@ -1,0 +1,275 @@
+openapi: 3.0.0
+info:
+  title: Argent Bank API - Transactions
+  description: API pour la gestion des transactions bancaires
+  version: 1.0.0
+  contact:
+    name: Argent Bank
+servers:
+  - url: http://localhost:3001/api/v1
+    description: Serveur de développement
+tags:
+  - name: Transactions
+    description: Opérations liées aux transactions bancaires
+
+paths:
+  /user/accounts/{accountId}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Récupère les transactions d'un compte pour le mois en cours
+      description: Renvoie toutes les transactions pour un compte spécifique, par défaut pour le mois en cours
+      parameters:
+        - name: accountId
+          in: path
+          description: ID du compte bancaire
+          required: true
+          schema:
+            type: string
+        - name: month
+          in: query
+          description: Mois pour lequel récupérer les transactions (format MM)
+          required: false
+          schema:
+            type: string
+        - name: year
+          in: query
+          description: Année pour laquelle récupérer les transactions (format YYYY)
+          required: false
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Liste des transactions récupérée avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Transactions récupérées avec succès
+                  data:
+                    type: object
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Paramètres invalides
+        '401':
+          description: Non autorisé
+        '404':
+          description: Compte non trouvé
+        '500':
+          description: Erreur serveur
+
+  /user/transactions/{transactionId}:
+    get:
+      tags:
+        - Transactions
+      summary: Récupère les détails d'une transaction spécifique
+      description: Renvoie les informations détaillées d'une transaction
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID de la transaction
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Détails de la transaction récupérés avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Détails de la transaction récupérés avec succès
+                  data:
+                    $ref: '#/components/schemas/TransactionDetail'
+        '401':
+          description: Non autorisé
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur serveur
+
+    put:
+      tags:
+        - Transactions
+      summary: Met à jour les informations d'une transaction
+      description: Permet de modifier les informations modifiables d'une transaction (catégorie, notes)
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID de la transaction
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                  description: Catégorie de la transaction
+                  example: Food
+                notes:
+                  type: string
+                  description: Notes personnelles sur la transaction
+                  example: Déjeuner d'affaires avec client
+      responses:
+        '200':
+          description: Transaction mise à jour avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Transaction mise à jour avec succès
+                  data:
+                    $ref: '#/components/schemas/TransactionDetail'
+        '400':
+          description: Données invalides
+        '401':
+          description: Non autorisé
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur serveur
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifiant unique de la transaction
+          example: tx123456
+        date:
+          type: string
+          format: date
+          description: Date de la transaction
+          example: 2025-03-15
+        description:
+          type: string
+          description: Description de la transaction
+          example: Golden Sun Bakery
+        amount:
+          type: number
+          description: Montant de la transaction
+          example: -35.20
+        balance:
+          type: number
+          description: Solde après la transaction
+          example: 2546.30
+        type:
+          type: string
+          description: Type de transaction
+          example: Electronic
+        category:
+          type: string
+          description: Catégorie de la transaction
+          example: Food
+      required:
+        - id
+        - date
+        - description
+        - amount
+        - balance
+        - type
+
+    TransactionDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifiant unique de la transaction
+          example: tx123456
+        date:
+          type: string
+          format: date
+          description: Date de la transaction
+          example: 2025-03-15
+        description:
+          type: string
+          description: Description de la transaction
+          example: Golden Sun Bakery
+        amount:
+          type: number
+          description: Montant de la transaction
+          example: -35.20
+        balance:
+          type: number
+          description: Solde après la transaction
+          example: 2546.30
+        type:
+          type: string
+          description: Type de transaction
+          example: Electronic
+        category:
+          type: string
+          description: Catégorie de la transaction
+          example: Food
+        notes:
+          type: string
+          description: Notes personnelles sur la transaction
+          example: Déjeuner d'affaires avec client
+        status:
+          type: string
+          description: Statut de la transaction
+          example: Completed
+        merchantName:
+          type: string
+          description: Nom du commerçant
+          example: Golden Sun Bakery
+        merchantLogo:
+          type: string
+          description: URL du logo du commerçant
+          example: https://example.com/logos/goldensun.png
+        merchantCategory:
+          type: string
+          description: Catégorie du commerçant
+          example: Restaurant
+        paymentMethod:
+          type: string
+          description: Méthode de paiement utilisée
+          example: Credit Card
+      required:
+        - id
+        - date
+        - description
+        - amount
+        - balance
+        - type

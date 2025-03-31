@@ -8,7 +8,7 @@ export const argentBankApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: baseUrlApi,
     prepareHeaders: (headers, { getState }) => {
-      // Récupération du token du state redux
+
       const token = getState().auth.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);

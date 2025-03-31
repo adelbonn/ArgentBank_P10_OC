@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import style from './AccountIndex.module.css'
 import Button from '../Button/ButtonIndex'
 import Transaction from '../Transactions/TransactionIndex'
-// import Icon from '../Icons/Icon'
+import Icon from '../Icons/Icon'
 import { useState } from 'react'
 
 /**

@@ -1,9 +1,9 @@
 import style from './TransactionTable.module.css'
-import { transactionsData } from '../../assets/Data/TransactionsData'
 import PropTypes from 'prop-types'
+import TransactionRow from './TransactionRow'
 
 
-const TransactionTable = () => {
+const TransactionTable = ({ transactions }) => {
 
     return (
         <table className={style.transactionTable}>
@@ -16,14 +16,18 @@ const TransactionTable = () => {
                 </tr>
             </thead>
             <tbody>
-                {transactionsData.map((transaction) => (
-                    <tr key={transaction.id}>
-                        <td>{transaction.date}</td>
-                        <td>{transaction.description}</td>
-                        <td>{transaction.amount}</td>
-                        <td>{transaction.balance}</td>
+                {transactions && transactions.length > 0 ? (
+                transactions.map((transaction, index) => (
+                    <TransactionRow
+                    key={`transactions-${index}`}
+                    transaction={transaction}
+                    />
+                ))
+                ) : (
+                    <tr>
+                        <td colSpan="4">No transactions found</td>
                     </tr>
-                ))}
+                )}
             </tbody>
         </table>
     )
