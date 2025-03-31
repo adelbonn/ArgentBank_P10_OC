@@ -1,29 +1,27 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
 import { useGetProfileQuery } from '../../store/api/argentBankApi'
 import { logout, selectIsAuthenticated } from '../../store/features/auth/authSlice'
+import style from  './NavIndex.module.css'
 
-import '../../styles/main.css'
-// import Logo from '../Logo/Logo'
-import UserIcon from '../UserIcon/UserIconIndex'
+import Icon from '../Icons/Icon'
 
 /**
  * Nav component - Navigation principale
+ * @returns {JSX.Element} Navigation avec les liens
  * 
- * utilise les styles du template main.css
  * 
  */
 
 function Nav () {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-   
+    const navigate = useNavigate() 
     const isAuthenticated = useSelector(selectIsAuthenticated);
 
     // Récupération du profil uniquement si authentifié
     const { data: profile } = useGetProfileQuery(undefined, {
         skip: !isAuthenticated, // skip la requête si l'utilisateur n'est pas authentifié
-        refetchOnMountOrArgChange: true // refetch quand un composant est monté ou les arguments changent, le cache est invalide 
+        refetchOnMountOrArgChange: true // refetch quand un composant est monté ou que les arguments changent, ce qui garanti que les données sont toujours à jour
     });
 
 const handleLogout = (event) => {
@@ -31,39 +29,40 @@ const handleLogout = (event) => {
     dispatch(logout()); // dispatch l'action logout du authSlice
     navigate('/');
 };
+
 // Fonction pour gerer le style des classes des liens (isActive ou non)
 const getLinkClass = ({isActive}) => {
-    return `main-nav-item ${isActive ? 'router-link-exact-active' : ''}`;
+    return `${style.mainNavItem} ${isActive ? style.routerLinkExactActive : ''}`;
 };
     return (
-        <nav className="main-nav">
+        <nav className={style.mainNav}>
             
-            <div className="main-nav-items">
+            <div className={style.mainNavItems}>
             {isAuthenticated ? (
                     <>
                         <NavLink to="/user" className={getLinkClass} title="Profile">
-                            <span className="username">{profile?.userName}</span>
-                            <UserIcon type="user" />
+                            <span className={style.username}>{profile?.userName}</span>
+                            <Icon size="default" type="user" />
                         </NavLink>
                         <NavLink to="/user/settings" className={getLinkClass} title="Settings">
-                            <UserIcon type="settings" />
+                            <Icon size="default" type="settings" />
                         </NavLink>
                         <NavLink
                             to="/"
                             onClick={handleLogout}
-                            className="main-nav-item sign-out-button"
+                            className={getLinkClass}
                             title="Sign Out"
                         >
-                            <UserIcon type="signout" />
+                            <Icon size="default" type="signout" />
                         </NavLink>
                     </>
                 ) : (
-                <Link className="main-nav-item" to="/login" title="Sign In">
-                    <UserIcon size="default" />
+                <NavLink className={style.mainNavItem} to="/login" title="Sign In">
+                    <Icon size="default" type="user" />
                     Sign In
-                </Link>
+                </NavLink>
                 )
-}
+        }
             </div>
         </nav>
     );

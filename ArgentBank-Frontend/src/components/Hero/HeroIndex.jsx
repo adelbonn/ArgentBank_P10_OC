@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types'
-import '../../styles/main.css'
-import Subtitle from '../Subtitle/SubtitleIndex'
+import PropTypes from "prop-types";
+import Subtitle from "../Subtitle/SubtitleIndex";
+
+import style from './Hero.module.css';
 
 /**
  * Composant Hero - Banner principal de la page d'accueil
@@ -10,24 +11,23 @@ import Subtitle from '../Subtitle/SubtitleIndex'
  * @param {string} props.text - Texte principal du hero
  */
 
-function Hero ({subtitles, text}) {
-    return (
-        <div className='hero'>
-            <section className='hero-content'>
-                <h2 className='sr-only'>Promoted Content</h2>
-  {/* map sur le tableau de sous-titres pour créer plusieurs Subtitle */}
-  {subtitles.map((subtitle, index) => (
+function Hero({ subtitles, text }) {
+  return (
+    <div className={style.hero}>
+      <section className={style.heroContent}>
+        <h2 className="sr-only">Promoted Content</h2>
+        {subtitles.map((subtitle, index) => (
           <Subtitle key={`subtitle-${index}`} text={subtitle} />
         ))}
-  <p className='text'>{text}</p>
-            </section>
-        </div>
-    )
+        <p className={style.text}>{text}</p>
+      </section>
+    </div>
+  );
 }
 
 Hero.propTypes = {
-    subtitles: PropTypes.arrayOf(PropTypes.string),
-    text: PropTypes.string.isRequired
-}
+  subtitles: PropTypes.arrayOf(PropTypes.string),
+  text: PropTypes.string.isRequired,
+};
 
-export default Hero
+export default Hero;

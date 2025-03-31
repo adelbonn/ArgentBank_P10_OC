@@ -10,7 +10,7 @@ import { useLoginMutation } from "../../store/api/argentBankApi";
 import CheckBoxField from "../CheckBoxField/CheckBoxFieldIndex";
 import InputField from "../InputField/InputFieldIndex";
 import SignInButton from "../SigInButton/SignInButtonIndex";
-import UserIcon from "../UserIcon/UserIconIndex";
+import Icon from "../Icons/Icon";
 
 /***
  * Composant LoginForm - Gère le formulaire de connexion de la page Login
@@ -20,9 +20,7 @@ import UserIcon from "../UserIcon/UserIconIndex";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  // Utilisation du hook généré par RTK Query
   const [login, { isLoading, error }] = useLoginMutation();
 
   // Redirection si dejà authentifié
@@ -31,27 +29,26 @@ const LoginForm = () => {
       navigate("/user");
     }
   }, [isAuthenticated, navigate]);
-
-  // Récupération des identifiants sauvegardés
-  useEffect(() => {
-    const savedCredentials = localStorage.getItem("rememberCredentials");
-    if (savedCredentials) {
-      const { email, password } = JSON.parse(savedCredentials);
-      setFormData((prev) => ({
-        ...prev,
-        username: email,
-        password,
-        remeberMe: true,
-      }));
-    }
-  }, []);
-
+  
   // état local du formulaire
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     rememberMe: false,
   });
+
+  // Récupération des identifiants (email) sauvegardés (vérifié si bien chargé dans le localStorage)
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if (rememberedEmail) {
+      setFormData((prev) => ({
+        ...prev,
+        username: rememberedEmail,
+        rememberMe: true,
+      }));
+    }
+  }, []);
+
 
   // Gestion des changements dans le formulaire
   const handleChange = (e) => {
@@ -65,25 +62,18 @@ const LoginForm = () => {
   // Soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Gestion du rememberMe
+      // gestion de rememberMe (uniquement l'email, plus sécur)(sauvegardé dans le localStorage) 
       if (formData.rememberMe) {
-        localStorage.setItem(
-          "rememberCredentials",
-          JSON.stringify({
-            email: formData.username,
-            password: formData.password,
-          })
-        );
+        localStorage.setItem("rememberedEmail", formData.username);
       } else {
-        localStorage.removeItem("rememberCredentials");
+        localStorage.removeItem("rememberedEmail");
       }
       // Appel de l'API avec RTK query
       await login({
         email: formData.username,
         password: formData.password,
-      }).unwrap(); // extrait les données en cas de succès, lance une erreur en cas déchec(catpturée dans catch)
+      }).unwrap(); // extrait les données en cas de succès, lance une erreur en cas déchec
 
       // le token sera géré par le authSlice via les matchers
       console.log("✅ Connexion réussie !");
@@ -94,10 +84,9 @@ const LoginForm = () => {
 
   return (
     <section className="sign-in-content">
-      <UserIcon size="large" />
+      <Icon size="large" type="user" />
       {/*A ajuster le style, manque un espace entre l icon et le texte*/}
       <h1>Sign In</h1>
-      {/* {error && <div className="error-text">{error}</div>}  */}
       <form onSubmit={handleSubmit}>
         <InputField
           id="username"
@@ -107,7 +96,7 @@ const LoginForm = () => {
           autoComplete="username"
           value={formData.username || ""}
           onChange={handleChange}
-          disabled={isLoading} // empêche la soumission du formulaire si le statut est "loading"
+          disabled={isLoading} 
         />
         <InputField
           id="password"
@@ -115,15 +104,15 @@ const LoginForm = () => {
           label="Password"
           type="password"
           autoComplete="current-password"
-          value={formData.password || ""} // Ajout de ||"" pour éviter undefined (inputs controlled/uncontrolled)
+          value={formData.password || ""} 
           onChange={handleChange}
           disabled={isLoading}
         />
         <CheckBoxField
-          id="remember-me"
+          id="rememberMe"
           name="rememberMe"
           label="Remember me"
-          defaultChecked={false} // utiliser defaultCheck a la place de check car creer un erreur en console revoir pourquoi
+          checked={formData.rememberMe} 
           onChange={handleChange}
           disabled={isLoading}
         />
@@ -131,6 +120,7 @@ const LoginForm = () => {
           type="submit"
           disabled={isLoading}
           text={isLoading ? "Loading..." : "Sign In"}
+          onClick={handleSubmit}
         />
         {error && (
           <div className="error-text">

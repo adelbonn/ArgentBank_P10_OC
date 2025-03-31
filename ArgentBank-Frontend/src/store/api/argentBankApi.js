@@ -1,23 +1,15 @@
-// import des fonctions nécessaires de RTK query
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getAuthToken } from "../../utils/auth";
 
-// Creation de l'API slice
+
+const baseUrlApi = "http://localhost:3001/api/v1";
+
 export const argentBankApi = createApi({
-  // Nom de ce slice dans le store redux
   reducerPath: "argentBankApi",
-
-  // configuration de base pour toutes les requêtes API
   baseQuery: fetchBaseQuery({
-    // Url de base pour toutes les requêtes API
-    baseUrl: "http://localhost:3001/api/v1",
+    baseUrl: baseUrlApi,
+    prepareHeaders: (headers, { getState }) => {
 
-    // préparation des headers pour chaque requêtes (s'execute avt chaque requêtes pour préparer les headers)
-    prepareHeaders: (headers) => {
-      // Récupération du token du state redux
-      const token = getAuthToken();
-
-      // Si le token est disponible, on l'ajoute dans l'entête
+      const token = getState().auth.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -25,12 +17,10 @@ export const argentBankApi = createApi({
       return headers;
     },
   }),
-  // Tags pour la gestion du cache
   tagTypes: ["Profile"],
 
   //definition des endpoints de l'API
-
-  endpoints: (builder) => ({
+ endpoints: (builder) => ({
     // Endpoint de login (mutation car modifie les données (.mutation pour les requêtes qui modifie les données ((POST, PUT, DELETE)))
     login: builder.mutation({
       query: (credentials) => ({
@@ -39,18 +29,21 @@ export const argentBankApi = createApi({
         body: credentials,
       }),
       // Transformation de la réponse avant de la mettre en cache
-      transformResponse: (response) => response.body,
+      transformResponse: (response) => {
+        console.log("👀 Response from login endpoint:", response);
+        return response.body;
+      },
     }),
 
     // endpoint pour récupérer le profil (query car lecture seule, .query pour les requêtes qui lisent les données (GET))
     getProfile: builder.query({
       query: () => "/user/profile",
       method: "GET",
-      // Transformation de la réponse
+
       transformResponse: (response) => response.body,
 
       // ce endpoint fourni les données du tag 'Profile' (tag pour le cache)
-      providesTags: ["Profile"], // indique que cette query fournit les données pour le tag 'profile'
+      providesTags: ["Profile"],
     }),
     // Endpoint pour mettre à jour le profil
     updateProfile: builder.mutation({

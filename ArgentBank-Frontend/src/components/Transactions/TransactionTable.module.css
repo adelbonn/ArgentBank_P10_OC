@@ -1,0 +1,36 @@
+.transactionTable {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    border-radius: 5px;
+    }
+    
+
+.transactionTable th {
+        text-align: left;
+        padding: 10px;
+        background-color: #f5f5f5;
+        color: black;
+    }
+
+    .transactionTable td {
+        text-align: left;
+        padding: 10px;
+        color: white;
+    }
+
+    .transactionTable tr {
+        background-color: #00bc77;
+        border-radius: 5px;
+    }
+
+    .transactionTable tr:hover {
+        background-color: #009966;
+    }
+    /* .noData {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    } */

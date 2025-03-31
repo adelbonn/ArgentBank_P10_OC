@@ -1,16 +1,18 @@
-// src/components/Features/Features.jsx
 import PropTypes from 'prop-types'
 import '../../styles/main.css'
 import FeatureItem from '../FeatureItem/FeaturesItemIndex'
+import style from './Features.module.css'
 
 /**
  * Composant Features - Section des fonctionnalités
  * @param {Object} props
- * @param {Array} props.features - Tableau des fonctionnalités à afficher
+ * @param {Array} props.features - Tableau des fonctionnalités à afficher sur la page Home
+ * @returns {JSX.Element} Section des fonctionnalités
  */
+
 function Features({ features }) {
   return (
-    <section className="features">
+    <section className={style.features}>
       <h2 className="sr-only">Features</h2>
       {features.map((feature, index) => (
         <FeatureItem

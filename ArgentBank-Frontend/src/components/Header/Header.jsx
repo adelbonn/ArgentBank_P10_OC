@@ -3,6 +3,7 @@ import Logo from '../Logo/Logo'
 import Nav from '../Nav/Nav'
 import '../../styles/main.css'
 
+import style from './Header.module.css'
 /**
  * Header component - En-tête principal
  * Structure de base avec les styles du template
@@ -12,10 +13,10 @@ import '../../styles/main.css'
 
 function Header() {
   return (
-    <nav className="main-nav">
+    <header className= {style.header}>
       <Logo />
       <Nav/>
-    </nav>
+    </header>
   )
 }
 

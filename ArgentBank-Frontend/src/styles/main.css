@@ -34,14 +34,15 @@ body {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-
-.main-nav {
+/*dans Header*/
+/* .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
-
+/*dans Nav*/
+/*
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -64,11 +65,13 @@ body {
 .main-nav-item:hover {
   text-decoration: underline;
   color: #42b983;
-}
-.username {
+} */
+ 
+/* .username {
   margin-right: 0.5rem;
-}
-.sign-out-button {
+  margin-left: 0.5rem;
+} */
+/* .sign-out-button {
   border: none;
   background: none;
   cursor: pointer;
@@ -77,8 +80,9 @@ body {
   font: inherit;
   padding: 0;
   margin: 0;
-}
-.main-nav-logo {
+} */
+/*Logo*/
+/* .main-nav-logo {
   display: flex;
   align-items: center;
 }
@@ -86,9 +90,9 @@ body {
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
-}
+} */
 /*Image de fond et positionnement */
-.hero {
+/* .hero {
   background-image: url('../../src/assets/img/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
@@ -96,7 +100,7 @@ body {
   height: 300px;
   position: relative;
 }
-/*Boite blanche contenant le texte*/
+/*Boite blanche contenant le texte
 .hero-content {
   position: relative;
   top: 2rem;
@@ -139,19 +143,20 @@ body {
   .hero-content .text {
     font-size: 1.2rem;
   }
-}
+} */
 
-.features {
-  display: flex;
-  flex-direction: column;
-}
 
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
   }
 }
-
+/*importer dans FeatureIndex*/
+/* .features {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+} */
 .feature-icon {
   width: 100px;
   border: 10px solid #00bc77;
@@ -159,17 +164,18 @@ body {
   padding: 1rem;
 }
 
-.feature-item {
+/*ds FeatureItem*/
+/* .feature-item {
   flex: 1;
   padding: 2.5rem;
-}
+} 
 
 .feature-item-title {
   color: #222;
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-}
+}*/
 
 .sign-in-button {
   display: block;
@@ -178,6 +184,7 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
+  margin-left: 0.5rem;
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
@@ -191,35 +198,37 @@ body {
   margin-top: 3rem;
   padding: 2rem;
 }
-
+/*SignIn icon type user en haut du formulaire de connection*/
 .sign-in-icon {
   font-size: 5rem;
 }
-
-.input-remember {
+/*CheckBoxField */
+/* .input-remember {
   display: flex;
 }
 
 .input-remember label {
   margin-left: 0.25rem;
-}
-
-.input-wrapper {
+} */
+/**InputField */
+/* .input-wrapper {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
-}
+} */
 
-.input-wrapper label {
+/* .input-wrapper label {
   font-weight: bold;
-}
+  color: white; /* vérifier et mettre le bon style
+} 
 
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-}
-
+}*/
+/*Footer*/
+/* 
 .footer {
   display: flex;
   justify-content: center;
@@ -230,9 +239,9 @@ body {
 .footer-text {
   margin: 0;
   padding: 0;
-}
+} */
 
-.account {
+/* .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -251,38 +260,39 @@ body {
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
-}
+} */
 
-.account-amount-description {
+/* .account-amount-description {
   margin: 0;
-}
+} */
 
-.account-title {
+/* .account-title {
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: normal;
-}
+} */
 
-.account-content-wrapper {
+/* .account-content-wrapper {
   width: 100%;
   flex: 1;
-}
-
-.edit-button {
+} */
+/**EditProfile a adapter avec Button et ajouter une logique */
+/*.edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
-}
+  border-radius: 5px;
+}*/
 
-.header {
+/* .header {
   color: #fff;
   margin-bottom: 2rem;
-}
+} */
 
-.transaction-button {
+/* .transaction-button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -292,8 +302,8 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
-}
-
+} */
+/* 
 @media (min-width: 720px) {
   .account {
     flex-direction: row;
@@ -306,4 +316,4 @@ body {
   .transaction-button {
     width: 200px;
   }
-}
+} */

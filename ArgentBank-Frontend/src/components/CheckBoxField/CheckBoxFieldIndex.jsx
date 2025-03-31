@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import style from './CheckBoxField.module.css'
 
 /**
  * Composant CheckBoxField - Champ de type checkbox réutilisable
@@ -11,10 +12,11 @@ import PropTypes from 'prop-types'
  */
 function CheckBoxField({ id, label, checked, onChange }) {
   return (
-    <div className="input-remember">
+    <div className={style.inputRemember}>
       <input
         type="checkbox"
         id={id}
+        name={id}
         checked={checked}
         onChange={onChange}
       />

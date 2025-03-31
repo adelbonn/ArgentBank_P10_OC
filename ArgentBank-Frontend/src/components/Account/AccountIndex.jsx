@@ -1,29 +1,48 @@
-
 import PropTypes from 'prop-types'
-import '../../styles/main.css'
+import style from './AccountIndex.module.css'
+import Button from '../Button/ButtonIndex'
+import Transaction from '../Transactions/TransactionIndex'
+import Icon from '../Icons/Icon'
+import { useState } from 'react'
 
 /**
  * Composant Account - Affiche les informations d'un compte bancaire
- * Composant a réutilisé pour les lignes de comptes quand elles seront affichées
  * @param {Object} props
  * @param {string} props.title - Titre du compte (ex: "Argent Bank Checking")
  * @param {string} props.accountNumber - Numéro du compte (ex: "x8349")
  * @param {string} props.amount - Montant du compte
  * @param {string} props.description - Description (ex: "Available Balance")
+ * @param {function} props.onTransactionView - Callback pour afficher/masquer les transactions
+ * @param {boolean} props.isActive - Indique si le compte est actif
  */
-const Account = ({ title, accountNumber, amount, description }) => {
+
+
+const Account = ({ title, accountNumber, amount, description, onTransactionView, isActive }) => {
+  const [showTransaction, setShowTransaction] = useState(false)
+
+const handleTransactionToggle = () => {
+  const newState = !showTransaction;
+  setShowTransaction(newState);
+  // informe le parent si on affiche ou masque le tableau des transactions
+  onTransactionView && onTransactionView(newState)
+}
   return (
-    <section className="account">
-      <div className="account-content-wrapper">
-        <h3 className="account-title">
-          {title} ({accountNumber})
+    <section className={`${style.account} ${isActive ? style.active : ''}`}>
+      <div className={style.accountContentWrapper}>
+        <h3 className={style.accountTitle}>
+          {title} 
         </h3>
-        <p className="account-amount">{amount}</p>
-        <p className="account-amount-description">{description}</p>
+        <p className={style.accountNumber}>{accountNumber}</p>
+        <p className={style.accountAmount}>{amount}</p>
+        <p className={style.accountAmountDescription}>{description}</p>
       </div>
-      <div className="account-content-wrapper cta">
-        {/* {/**Ajouter une logique pour la position de la flèche et ne pas la mettre en button qui a la className transaction-button (c'est le button générique) et mettre la bonne icon que voici :  <FontAwesomeIcon icon="fas fa-chevron-right" />/, et l'icone de fermeture : <FontAwesomeIcon icon="fa-sharp-duotone fa-regular fa-xmark" /> } */}
-        <button className="transaction-button"> <i className="fa fa-chevron-right" aria-hidden="true"/></button>
+      <div className={style.accountContentWrapperCta}>
+
+        <Button 
+        text={showTransaction ? 'Hide Transactions' : 'View Transactions'} 
+        className={style.transactionButton}
+        onClick={handleTransactionToggle}
+        />
       </div>
     </section>
   )

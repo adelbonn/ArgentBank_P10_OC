@@ -16,9 +16,9 @@ function Layout ({children}) {
     return (
         <>
             <Header />
-            <main className="main bg-dark">
+        
                 {children}
-            </main>
+          
             <Footer />
         </>
     )

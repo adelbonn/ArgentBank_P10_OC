@@ -1,74 +1,96 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { fetchUserProfile, selectUserProfile, selectUserStatus, selectUserError } from '../../store/features/user/userSlice'
-import { selectIsAuthenticated } from '../../store/features/auth/authSlice';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { argentBankApi } from "../../store/api/argentBankApi";
+import {
+  selectUserProfile,
+  selectUserStatus,
+  selectUserError,
+ 
+} from "../../store/features/user/userSlice";
 
-import WelcomeSection from '../../components/WelcomeSEction/WelcomeSectionIdex';
-import AccountSection from '../../components/AccountSection/AccountSectionIndex';
-import '../../styles/main.css'
+import { useUpdateProfileMutation } from "../../store/api/argentBankApi";
 
-// import EditProfile from '../EditProfile/EditProfileIndex'
+import WelcomeSection from "../../components/WelcomeSection/WelcomeSectionIdex";
+import AccountSection from "../../components/AccountSection/AccountSectionIndex";
+
+import EditProfile from "../../components/EditProfile/EditProfileIndex";
+
+import "../../styles/main.css";
 
 /**
  * Page User - Dashboard utilisateur
- * Utilise les styles du template main.css
+ * 
  * @returns {JSX.Element}
  */
 
-
 const User = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
-
-   //utilisation des selectors mémorisés
-  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const dispatch = useDispatch();
+  // Utilisation du hook généré par RTK Query pour la mutation updateProfile (mutation car modifie les données)
+  const [updateProfile] = useUpdateProfileMutation();
+  // Récupération des données du profil depuis le store 
   const userProfile = useSelector(selectUserProfile);
+
   const status = useSelector(selectUserStatus);
   const error = useSelector(selectUserError);
-  const [isEditing, setIsEditing] = useState(false)
-  
-  // gestion du profil au montage du composant 
-  useEffect(() => {
+  // Gestion de l'état de l'affichage entre le mode de lecture et l'edition (WelcomeSection et EditProfile)
+  const [isEditing, setIsEditing] = useState(false);
 
-    // redirection si non authentifier
-    if (!isAuthenticated) {
-      navigate('/')
-      return
+
+
+  //  Gestionnaire pour sauvegarder les modifications
+  const handleSave = async (newUserName) => {
+    try {
+      // Appel de la mutation RTK Query
+     const result =  await updateProfile({ userName: newUserName }).unwrap(); // unwrap pour la gestion d'erreur ou de reussite de la promise renvoyée
+      if (result) {
+        // recharge le profil pour mettre à jour l'ui
+       dispatch(argentBankApi.endpoints.getProfile.initiate()); 
+        setIsEditing(false);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du profil:", error);
     }
+  };
 
-// Chargement du profil si authentifié
-    dispatch(fetchUserProfile())
-  }, [dispatch, navigate, isAuthenticated])  
+  // Gestionnaire pour annuler l'édition
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
 
   // Affichage pendant le chargement
-  if (status === 'loading') {
+  if (!userProfile || status === "loading") {
     return <div className="loading">Chargement...</div>;
   }
 
   // Affichage en cas d'erreur
-  if (status === 'failed') {
-    return <div className="error">Erreur : {error}</div>;
-  }
-  if (error) {
+  if (status === "failed" || error) {
     return <div className="error">Erreur : {error}</div>;
   }
 
   return (
     <main className="main bg-dark">
-    <WelcomeSection
-     firstName={userProfile.firstName}
-      lastName={userProfile.lastName} 
-      userName={userProfile.userName}
-      isEditing={isEditing}
-      onEdit={() => setIsEditing(true)} />
-    <AccountSection />
+      {isEditing ? (
+        <EditProfile
+          userName={userProfile.userName}
+          firstName={userProfile.firstName}
+          lastName={userProfile.lastName}
+          isEditing={isEditing}
+          onSave={handleSave}
+          onCancel={handleCancel}
+        />
+      ) : (
+        <WelcomeSection
+          firstName={userProfile.firstName}
+          lastName={userProfile.lastName}
+          userName={userProfile.userName}
+          isEditing={isEditing}
+          onEdit={() => setIsEditing(true)}
+        />
+      )}
+
+      <AccountSection />
     </main>
-  )
-}
+  );
+};
 
-
-
-export default User
-
-
+export default User;
