@@ -2,7 +2,7 @@ Justifications de mes choix pour la documentation de l'API (étape 2 du projet)
 
 1. Structure des endpoints
   - /user/accounts/{accountId}/transactions :
-     => Premet de récupérer les transactions par compte ce qui correspond au besoin de 'visualiser toutes les transactions pour le mois en cours, groupées par compt'
+     => Premet de récupérer les transactions par compte ce qui correspond au besoin de 'visualiser toutes les transactions pour le mois en cours, groupées par comptes'
   - /user/transactions/{transactionId} :
     => Permet d'azccéder aux détails d'une transaction spécifique et de la modifier 
 
@@ -10,7 +10,7 @@ Justifications de mes choix pour la documentation de l'API (étape 2 du projet)
 2. Méthodes HTTP : 
   - GET : pour récupéré les données
   - PUT pour mettre à jour les informations d'une transaction (catégorie, notes) (on doit pouvoir ajouter, supprimer, ou modifier les informations de la transaction, mais pas la transaction elle-même)
-  - Pas de DELETE ou POST car il est spécifié qu'on ne supprimera pas ouy ne modifiera pas un transacation (uniquement ses informations)
+  - Pas de DELETE ou POST car il est spécifié qu'on ne supprimera pas ou ne modifiera pas un transaction (uniquement ses informations)
 
 3. Paramètres :
   - Paramètres de chemin (path) pour les identifiants
@@ -19,12 +19,12 @@ Justifications de mes choix pour la documentation de l'API (étape 2 du projet)
 
 4. Réponses :
   - code statut HTTP standard (200, 400, 401, 404, 500)
-  - structure de réponse cohérente avec un statut un lessage et des données
+  - structure de réponse cohérente avec un statut un message et des données
 
-5. Shémas :
+5. Schémas :
   - Transaction pour les informations de base d'une transaction
   - TransactionID pour les informations détaillées incluant des champs supplémentaires
 
 
-Cette proposition d'API respecte les principes API RESTful et couvre le besoins spécifiés pour la phase 2 de ArgentBank
+Cette proposition d'API respecte les principes API RESTfull et couvre le besoins spécifiés pour la phase 2 de ArgentBank
 
