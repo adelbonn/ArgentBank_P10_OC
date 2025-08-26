@@ -2,15 +2,15 @@ Justifications de mes choix pour la documentation de l'API (étape 2 du projet)
 
 1. Structure des endpoints
   - /user/accounts/{accountId}/transactions :
-     => Premet de récupérer les transactions par compte ce qui correspond au besoin de 'visualiser toutes les transactions pour le mois en cours, groupées par compt'
+     => Premet de récupérer les transactions par compte ce qui correspond au besoin de 'visualiser toutes les transactions pour le mois en cours, groupées par comptes'
   - /user/transactions/{transactionId} :
-    => Permet d'azccéder aux détails d'une transaction spécifique et de la modifier 
+    => Permet d'accéder aux détails d'une transaction spécifique et de la modifier 
 
 
 2. Méthodes HTTP : 
   - GET : pour récupéré les données
   - PUT pour mettre à jour les informations d'une transaction (catégorie, notes) (on doit pouvoir ajouter, supprimer, ou modifier les informations de la transaction, mais pas la transaction elle-même)
-  - Pas de DELETE ou POST car il est spécifié qu'on ne supprimera pas ouy ne modifiera pas un transacation (uniquement ses informations)
+  - Pas de DELETE ou POST car il est spécifié qu'on ne supprimera pas ou ne modifiera pas un transaction (uniquement ses informations)
 
 3. Paramètres :
   - Paramètres de chemin (path) pour les identifiants
