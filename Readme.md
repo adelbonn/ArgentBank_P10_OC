@@ -69,10 +69,10 @@ npm run dev
 ## Fonctionnalités
 
 - Authentification des utilisateurs
-- Gestion des comptes utilisateur
-- Connexion/déconnexion des utilisateursde manière sécurisée
+- Gestion des comptes utilisateurs
+- Connexion/déconnexion des utilisateurs de manière sécurisée
 - Gestion ds erreurs si username ou mdp incorrect
-- L'utilisateur peut voir ses infromations uniquement après s'être connecté avec succès
+- L'utilisateur peut voir ses informations uniquement après s'être connecté avec succès
 - Affichage des transactions
 - Interface web responsive et complète
 
